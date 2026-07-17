@@ -17,9 +17,16 @@
   .nav-a:hover { color: var(--nav-accent, #B08D57) !important; opacity: 1; }
   .cta:hover { color: #C9A87C !important; opacity: 1; }
   @media (max-width: 760px) {
-    .g-2col, .g-3col { grid-template-columns: 1fr !important; }
+    .g-2col, .g-3col, .g-contact { grid-template-columns: 1fr !important; }
     .g-crow { grid-template-columns: 1fr !important; gap: 6px !important; }
     .g-3col > .g-portrait { max-width: 320px; width: 100%; }
+    .fig-1 { height: 400px !important; }
+    .fig-2 { height: 360px !important; }
+    .rule-head { flex-wrap: wrap; gap: 8px 24px; }
+  }
+  @media (max-width: 640px) {
+    .nav-inner { flex-direction: column; align-items: flex-start !important; padding: 18px 0 !important; gap: 14px; }
+    .nav-links { gap: 12px 20px !important; }
   }
 </style>
 </head>
@@ -31,9 +38,9 @@
 
   <!-- Nav -->
   <div id="kk-nav" style="position: sticky; top: 0; z-index: 10; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); padding: 0 clamp(32px, 6.7vw, 96px);">
-    <div style="max-width: 1248px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 26px 0;">
+    <div class="nav-inner" style="max-width: 1248px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 26px 0;">
       <a href="#top" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 18px; letter-spacing: 0.18em; white-space: nowrap; text-decoration: none; color: var(--nav-fg, #F4F1EA); transition: color 450ms cubic-bezier(0.25,0.1,0.25,1);">KAMALI<span style="font-style: italic; margin: 0 0.5em; color: #8A6F3F;">&amp;</span>KAMALI</a>
-      <div style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
+      <div class="nav-links" style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
         <a href="#about-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">About us</a>
         <a href="#what-we-do" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">What we do</a>
         <a href="#our-values" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Our values</a>
@@ -59,7 +66,7 @@
   </div>
 
   <!-- Full-bleed imagery -->
-  <div data-clip="1" data-parallax="0.06" style="position: relative; height: 620px; background: #DDE5E0; overflow: hidden;">
+  <div data-clip="1" data-parallax="0.06" class="fig-1" style="position: relative; height: 620px; background: #DDE5E0; overflow: hidden;">
     <img src="./uploads/wolfgang-hasselmann-Fd01B6nNPbo-unsplash.jpg" alt="Dunes under a veil of haze" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 72%;">
   </div>
   <div style="background: #F4F1EA; padding: 18px clamp(32px, 6.7vw, 96px) 0;">
@@ -121,7 +128,7 @@
   <!-- Leadership -->
   <div id="leadership" style="padding: 0 clamp(32px, 6.7vw, 96px) 136px; scroll-margin-top: 96px;">
     <div style="max-width: 1248px; margin: 0 auto;">
-      <div data-rule="1" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
+      <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Leadership — the principals</div>
         <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62;">Est. Abu Dhabi</div>
       </div>
@@ -157,7 +164,7 @@
   <div data-nav-dark="1" style="position: relative; overflow: hidden; background: #0E0F10; color: #F4F1EA; padding: 128px clamp(32px, 6.7vw, 96px);">
     <canvas id="kk-field-vm" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; filter: blur(30px); transform: scale(1.1); opacity: 0.8;"></canvas>
     <div style="position: relative; z-index: 2; max-width: 1248px; margin: 0 auto;">
-      <div data-rule="1" style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(244,241,234,0.18); padding-top: 20px;">
+      <div data-rule="1" class="rule-head" style="display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid rgba(244,241,234,0.18); padding-top: 20px;">
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,241,234,0.60);">Vision &amp; mission</div>
         <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60);">Abu Dhabi · United Arab Emirates</div>
       </div>
@@ -176,7 +183,7 @@
   </div>
 
   <!-- Full-bleed — desert night -->
-  <div data-clip="1" data-parallax="0.06" data-nav-dark="1" style="position: relative; height: 520px; background: #0E0F10; overflow: hidden;">
+  <div data-clip="1" data-parallax="0.06" data-nav-dark="1" class="fig-2" style="position: relative; height: 520px; background: #0E0F10; overflow: hidden;">
     <img src="./uploads/tim-de-groot-yNGQ830uFB4-unsplash.jpg" alt="A dune under the night sky" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
   </div>
   <div data-nav-dark="1" style="background: #0E0F10; padding: 18px clamp(32px, 6.7vw, 96px) 18px;">
@@ -239,7 +246,7 @@
 
   <!-- Contact -->
   <div id="contact-us" style="background: #F4F1EA; padding: 88px clamp(32px, 6.7vw, 96px) 128px; scroll-margin-top: 96px;">
-    <div data-rule="1" style="max-width: 1248px; margin: 0 auto; border-top: 1px solid #0E0F10; padding-top: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: start;">
+    <div data-rule="1" class="g-contact" style="max-width: 1248px; margin: 0 auto; border-top: 1px solid #0E0F10; padding-top: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: start;">
       <div>
         <div data-reveal="0" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Contact us</div>
         <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(38px, 4.2vw, 54px); line-height: 1.12; margin: 32px 0 0;">Let's build together.</h2>
