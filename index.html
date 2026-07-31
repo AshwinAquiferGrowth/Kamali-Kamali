@@ -24,9 +24,18 @@
     .fig-2 { height: 360px !important; }
     .rule-head { flex-wrap: wrap; gap: 8px 24px; }
   }
+  .nav-burger { display: none; background: none; border: 0; padding: 10px 0 10px 16px; cursor: pointer; }
+  .nav-burger span { display: block; width: 22px; height: 1px; background: var(--nav-fg, #F4F1EA); transition: transform 320ms cubic-bezier(0.25,0.1,0.25,1), opacity 320ms cubic-bezier(0.25,0.1,0.25,1), background 450ms cubic-bezier(0.25,0.1,0.25,1); }
+  .nav-burger span + span { margin-top: 6px; }
   @media (max-width: 640px) {
-    .nav-inner { flex-direction: column; align-items: flex-start !important; padding: 18px 0 !important; gap: 14px; }
-    .nav-links { gap: 12px 20px !important; }
+    .nav-burger { display: block; }
+    .nav-links { display: none !important; }
+    #kk-nav.menu-open .nav-links { display: flex !important; flex-direction: column; align-items: flex-start !important; gap: 0 !important; position: absolute; top: 100%; left: 0; right: 0; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); padding: 6px clamp(32px, 6.7vw, 96px) 18px; transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); }
+    #kk-nav.menu-open .nav-links a { padding: 13px 0; }
+    #kk-nav.menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    #kk-nav.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
+    #kk-nav.menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .footer-band { padding: 72px clamp(32px, 6.7vw, 96px) 64px !important; }
   }
 </style>
 </head>
@@ -40,12 +49,13 @@
   <div id="kk-nav" style="position: sticky; top: 0; z-index: 10; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); padding: 0 clamp(32px, 6.7vw, 96px);">
     <div class="nav-inner" style="max-width: 1248px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 26px 0;">
       <a href="#top" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 18px; letter-spacing: 0.18em; white-space: nowrap; text-decoration: none; color: var(--nav-fg, #F4F1EA); transition: color 450ms cubic-bezier(0.25,0.1,0.25,1);">KAMALI<span style="font-style: italic; margin: 0 0.5em; color: #8A6F3F;">&amp;</span>KAMALI</a>
-      <div class="nav-links" style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
+      <div class="nav-links" id="kk-nav-links" style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
         <a href="#about-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">About us</a>
         <a href="#what-we-do" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">What we do</a>
         <a href="#our-values" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Our values</a>
         <a href="#contact-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Contact us</a>
       </div>
+      <button class="nav-burger" id="kk-burger" aria-label="Menu" aria-expanded="false" aria-controls="kk-nav-links"><span></span><span></span><span></span></button>
     </div>
   </div>
 
@@ -273,7 +283,7 @@
   </div>
 
   <!-- Footer -->
-  <div style="position: relative; overflow: hidden; background: #F4F1EA; padding: 120px clamp(32px, 6.7vw, 96px) 112px;">
+  <div class="footer-band" style="position: relative; overflow: hidden; background: #F4F1EA; padding: 120px clamp(32px, 6.7vw, 96px) 112px;">
     <svg id="kk-dunes" viewBox="0 0 1440 460" preserveAspectRatio="xMidYMax slice" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></svg>
     <div data-reveal="0" style="position: relative; z-index: 2; max-width: 1248px; margin: 0 auto; text-align: center; font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(28px, 7.2vw, 104px); letter-spacing: 0.14em; line-height: 1; white-space: nowrap;">KAMALI<span style="font-style: italic; color: #8A6F3F; margin: 0 0.35em;">&amp;</span>KAMALI</div>
   </div>
@@ -293,6 +303,18 @@
     document.body.__kkMounted = true;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const fields = [];
+
+    const burgerNav = document.getElementById('kk-nav');
+    const burger = document.getElementById('kk-burger');
+    if (burger && burgerNav) {
+      const closeMenu = () => { burgerNav.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); };
+      burger.addEventListener('click', () => {
+        const open = burgerNav.classList.toggle('menu-open');
+        burger.setAttribute('aria-expanded', String(open));
+      });
+      burgerNav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', closeMenu));
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    }
 
     function mountField(canvas, cfg) {
       const gl = canvas.getContext('webgl', { antialias: false, alpha: false });
