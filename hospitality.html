@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K&amp;K Hospitality — Kamali &amp; Kamali Holding LLC, Abu Dhabi</title>
-<meta name="description" content="K&K Hospitality invests in, develops, opens and operates hospitality concepts — restaurants, cafes and F&B venues across the UAE, GCC and beyond. Consultancy, development, owner representation and management.">
+<meta name="description" content="K&K Hospitality invests in, develops, opens and operates hospitality concepts across the UAE and GCC — restaurants, cafes and hotel F&B. Investment, consultancy, pre-opening, owner representation and management.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230E0F10'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-style='italic' font-size='40' fill='%23B08D57' text-anchor='middle'%3E%26amp;%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
@@ -23,8 +23,18 @@
     .fig-1 { height: 400px !important; }
     .rule-head { flex-wrap: wrap; gap: 8px 24px; }
     .footer-band { padding: 72px clamp(32px, 6.7vw, 96px) 64px !important; }
-    .involve-row { grid-template-columns: 36px minmax(0, 1fr) !important; gap: 14px !important; }
+    .principle-row { grid-template-columns: 36px minmax(0, 1fr) !important; gap: 14px !important; }
   }
+  .nav-menu { position: relative; padding: 26px 0; margin: -26px 0; }
+  .nav-menu > .nav-a { background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: baseline; gap: 0.5em; }
+  .nav-menu > .nav-a .nav-caret { font-size: 8px; transition: transform 300ms cubic-bezier(0.25,0.1,0.25,1); }
+  .nav-sub { display: none; position: absolute; top: 100%; left: -22px; min-width: 340px; white-space: nowrap; flex-direction: column; background: var(--nav-bg, #0E0F10); border: 1px solid var(--nav-line, rgba(244,241,234,0.14)); border-top: 0; padding: 8px 0 10px; z-index: 11; }
+  .nav-menu:hover .nav-sub, .nav-menu.open .nav-sub, .nav-menu:focus-within .nav-sub { display: flex; }
+  .nav-menu:hover .nav-caret, .nav-menu.open .nav-caret { transform: translateY(1px) rotate(180deg); }
+  .nav-sub a, .nav-sub span { font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 11px 22px; color: var(--nav-fg2, rgba(244,241,234,0.85)); display: flex; justify-content: space-between; gap: 24px; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1); }
+  .nav-sub a:hover, .nav-sub a[aria-current] { color: var(--nav-accent, #B08D57); opacity: 1; }
+  .nav-sub span { opacity: 0.4; cursor: default; }
+  .nav-sub .nav-tag { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.18em; opacity: 0.8; }
   .nav-burger { display: none; background: none; border: 0; padding: 10px 0 10px 16px; cursor: pointer; }
   .nav-burger span { display: block; width: 22px; height: 1px; background: var(--nav-fg, #F4F1EA); transition: transform 320ms cubic-bezier(0.25,0.1,0.25,1), opacity 320ms cubic-bezier(0.25,0.1,0.25,1), background 450ms cubic-bezier(0.25,0.1,0.25,1); }
   .nav-burger span + span { margin-top: 6px; }
@@ -33,6 +43,11 @@
     .nav-links { display: none !important; }
     #kk-nav.menu-open .nav-links { display: flex !important; flex-direction: column; align-items: flex-start !important; gap: 0 !important; position: absolute; top: 100%; left: 0; right: 0; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); padding: 6px clamp(32px, 6.7vw, 96px) 18px; transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); }
     #kk-nav.menu-open .nav-links a { padding: 13px 0; }
+    #kk-nav.menu-open .nav-menu { padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
+    #kk-nav.menu-open .nav-menu > .nav-a { padding: 13px 0; }
+    #kk-nav.menu-open .nav-sub { display: flex; position: static; min-width: 0; width: 100%; border: 0; padding: 0 0 6px 18px; box-sizing: border-box; }
+    #kk-nav.menu-open .nav-sub a, #kk-nav.menu-open .nav-sub span { padding: 10px 0; }
+    #kk-nav.menu-open .nav-caret { display: none; }
     #kk-nav.menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     #kk-nav.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
     #kk-nav.menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -50,10 +65,18 @@
     <div class="nav-inner" style="max-width: 1248px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 26px 0;">
       <a href="./index.html" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 18px; letter-spacing: 0.18em; white-space: nowrap; text-decoration: none; color: var(--nav-fg, #F4F1EA); transition: color 450ms cubic-bezier(0.25,0.1,0.25,1);">KAMALI<span style="font-style: italic; margin: 0 0.5em; color: #8A6F3F;">&amp;</span>KAMALI</a>
       <div class="nav-links" id="kk-nav-links" style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
-        <a href="./index.html" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">K&amp;K Home</a>
-        <a href="#kohantei" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Kohantei</a>
-        <a href="#services" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">What we provide</a>
-        <a href="#leadership" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Leadership</a>
+        <a href="./index.html#about-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">About us</a>
+        <a href="./index.html#what-we-do" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">What we do</a>
+        <div class="nav-menu" id="kk-sectors-menu">
+          <button type="button" class="nav-a" aria-haspopup="true" aria-expanded="false" aria-controls="kk-sectors-sub" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Sectors<span class="nav-caret" aria-hidden="true">▼</span></button>
+          <div class="nav-sub" id="kk-sectors-sub">
+            <a href="./hospitality.html" aria-current="page">Hospitality</a>
+            <span aria-disabled="true">Investment &amp; real estate<span class="nav-tag">Soon</span></span>
+            <span aria-disabled="true">AI &amp; business transformation<span class="nav-tag">Soon</span></span>
+            <span aria-disabled="true">Education &amp; institutions<span class="nav-tag">Soon</span></span>
+          </div>
+        </div>
+        <a href="./index.html#our-values" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Our values</a>
         <a href="#contact-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Contact us</a>
       </div>
       <button class="nav-burger" id="kk-burger" aria-label="Menu" aria-expanded="false" aria-controls="kk-nav-links"><span></span><span></span><span></span></button>
@@ -65,10 +88,10 @@
     <canvas id="kk-field-hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; filter: blur(26px); transform: scale(1.08);"></canvas>
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(14,15,16,0.3) 0%, rgba(14,15,16,0) 32%, rgba(14,15,16,0) 55%, rgba(14,15,16,0.55) 100%); pointer-events: none;"></div>
     <div style="position: relative; z-index: 2; max-width: 1248px; margin: 0 auto; width: 100%;">
-      <div data-reveal="420" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,241,234,0.6);">K&amp;K Hospitality · Abu Dhabi · UAE &amp; GCC</div>
+      <div data-reveal="420" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,241,234,0.6);">K&amp;K Hospitality · Abu Dhabi</div>
       <h1 data-lines="560" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(44px, 6.5vw, 76px); line-height: 1.08; letter-spacing: -0.008em; margin: 40px 0 0; max-width: 17ch;">We know hospitality from <em style="font-style: italic; font-weight: 200;">both</em> sides.</h1>
       <div data-reveal="950" style="display: flex; flex-wrap: wrap; gap: clamp(40px, 6vw, 96px); margin-top: 48px; align-items: flex-start;">
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.6; max-width: 52ch; margin: 0; color: rgba(244,241,234,0.78);">We invest with an operator's understanding — and operate with an owner's mindset. K&amp;K invests in, develops, opens and operates hospitality concepts.</p>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.6; max-width: 52ch; margin: 0; color: rgba(244,241,234,0.78);">We invest with an operator's understanding and operate with an owner's mindset — investing in, developing, opening and operating hospitality concepts in the UAE, across the GCC and beyond.</p>
         <div style="padding-top: 8px;">
           <a href="#contact-us" class="cta" style="display: inline-flex; align-items: baseline; gap: 0.45em; font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 13px; color: #B08D57; text-decoration: none; white-space: nowrap; transition: color 220ms cubic-bezier(0.25,0.1,0.25,1);"><span style="border-bottom: 1px solid rgba(176,141,87,0.45); padding-bottom: 3px;">Start a conversation</span><span aria-hidden="true">→</span></a>
         </div>
@@ -82,85 +105,62 @@
       <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62; padding-top: 14px;">The business</div>
       <div>
         <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(23px, 2.4vw, 30px); line-height: 1.5; max-width: 42ch; margin: 0;">K&amp;K Hospitality brings together ownership, investment, culinary experience, restaurant development and day-to-day operations.</p>
-        <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 56ch; margin: 36px 0 0;">We are developing our own venues, starting with Kohantei at The Galleria Abu Dhabi. We also work with owners, investors, developers, landlords and hospitality businesses that need experienced support to assess an opportunity, develop a concept, open a venue or manage an existing operation.</p>
-        <p data-reveal="220" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 56ch; margin: 24px 0 0; color: #5A6B62;">Our focus is not limited to one format. We are open to restaurants, cafes, food and beverage venues within hotels, mall-based concepts, mixed-use destinations and the right opportunities in the UAE, across the GCC and internationally.</p>
+        <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 56ch; margin: 36px 0 0; color: #5A6B62;">We are developing our own venues, starting with Kohantei at The Galleria Abu Dhabi. We also work with owners, investors, landlords and developers who need experienced support — to assess an opportunity, develop a concept, open a venue or manage an existing operation.</p>
       </div>
     </div>
   </div>
 
-  <!-- Principles -->
+  <!-- Who we work with -->
   <div style="background: #F4F1EA; padding: 0 clamp(32px, 6.7vw, 96px) 136px;">
+    <div style="max-width: 1248px; margin: 0 auto;">
+      <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
+        <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Who we work with</div>
+        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Restaurants · Cafes · Hotel F&amp;B · Mall &amp; mixed-use</div>
+      </div>
+      <div data-stagger="110" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 64px;">
+        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">01</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 26px; line-height: 1.2; margin-top: 24px;">Owners &amp; investors</div>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 30ch; margin: 16px 0 0;">Assessing an opportunity, developing a concept or improving an operating venue.</p>
+        </div>
+        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">02</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 26px; line-height: 1.2; margin-top: 24px;">Landlords &amp; developers</div>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 30ch; margin: 16px 0 0;">Hospitality concepts for hotels, malls and mixed-use destinations.</p>
+        </div>
+        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">03</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 26px; line-height: 1.2; margin-top: 24px;">Brands entering the region</div>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 30ch; margin: 16px 0 0;">International brands entering the UAE or GCC, and regional concepts expanding abroad.</p>
+        </div>
+        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">04</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 26px; line-height: 1.2; margin-top: 24px;">Existing venues</div>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 30ch; margin: 16px 0 0;">Repositioning, stronger controls or experienced management.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The principles -->
+  <div id="principles" style="padding: 120px clamp(32px, 6.7vw, 96px) 128px;">
     <div style="max-width: 1248px; margin: 0 auto;">
       <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">The principles</div>
         <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">The format may change · the principles do not</div>
       </div>
-      <div data-stagger="110" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 64px;">
-        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">01</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 27px; line-height: 1.2; margin-top: 24px;">The concept</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 34ch; margin: 16px 0 0;">The concept must make sense for its market.</p>
+      <div data-stagger="130" style="margin-top: 48px;">
+        <div data-reveal="0" class="principle-row" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">01</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.15;">The concept must make sense for its <em style="font-style: italic; font-weight: 200;">market</em>.</div>
         </div>
-        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">02</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 27px; line-height: 1.2; margin-top: 24px;">The structure</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 34ch; margin: 16px 0 0;">The commercial structure must be workable.</p>
+        <div data-reveal="0" class="principle-row" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">02</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.15;">The commercial structure must be <em style="font-style: italic; font-weight: 200;">workable</em>.</div>
         </div>
-        <div data-reveal="0" style="border-top: 1px solid rgba(14,15,16,0.13); padding-top: 28px;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">03</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 27px; line-height: 1.2; margin-top: 24px;">The operation</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.65; color: #5A6B62; max-width: 34ch; margin: 16px 0 0;">The operation must be built properly.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- What we want to build -->
-  <div id="portfolio" style="padding: 0 clamp(32px, 6.7vw, 96px) 136px; scroll-margin-top: 96px;">
-    <div style="max-width: 1248px; margin: 0 auto; padding-top: 120px;">
-      <div data-rule="1" data-tick="1" style="border-top: 1px solid #0E0F10; padding-top: 20px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">What we want to build</div>
-      <div class="g-2col" style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); margin-top: 64px; align-items: start;">
-        <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.2; margin: 0; max-width: 20ch;">A focused portfolio, <em style="font-style: italic; font-weight: 200;">closely</em> held.</h2>
-        <div style="padding-top: 4px;">
-          <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0;">Our ambition is to build a focused portfolio of hospitality businesses through direct ownership, investment partnerships, joint ventures, management agreements and selected operating opportunities.</p>
-          <p data-reveal="220" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 24px 0 0; color: #5A6B62;">We are not interested in collecting concepts for the sake of appearing bigger. We would rather be closely involved in a smaller number of venues where we understand the product, the numbers, the people and the guest experience.</p>
-        </div>
-      </div>
-      <div style="margin-top: 88px;">
-        <div data-rule="1" data-tick="1" style="border-top: 1px solid rgba(14,15,16,0.35); padding-top: 20px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Where we can be involved</div>
-        <div data-stagger="70" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 clamp(24px, 4vw, 64px); margin-top: 32px;">
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">01</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Restaurants and destination dining</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">02</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Cafes and accessible everyday concepts</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">03</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Food and beverage venues within hotels</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">04</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Concepts within malls and mixed-use developments</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">05</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Partnerships with owners, investors, landlords and developers</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">06</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">International brands entering the UAE or GCC</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">07</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Regional concepts considering international expansion</div>
-          </div>
-          <div data-reveal="0" class="involve-row" style="display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 22px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
-            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">08</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 19px; line-height: 1.4;">Existing venues that need repositioning, stronger controls or experienced management</div>
-          </div>
+        <div data-reveal="0" class="principle-row" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0;">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">03</div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.15;">The operation must be built <em style="font-style: italic; font-weight: 200;">properly</em>.</div>
         </div>
       </div>
     </div>
@@ -178,75 +178,91 @@
         <div>
           <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(44px, 5.4vw, 68px); line-height: 1.05; margin: 0;"><em style="font-style: italic; font-weight: 200;">Kohantei</em></h2>
           <div data-reveal="200" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); margin-top: 24px;">The Galleria · Al Maryah Island · Abu Dhabi</div>
-          <p data-reveal="280" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 48ch; margin: 36px 0 0; color: rgba(244,241,234,0.78);">Kohantei is the first restaurant being developed under K&amp;K Hospitality, currently in development and pre-opening at The Galleria Abu Dhabi.</p>
-          <p data-reveal="360" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 48ch; margin: 24px 0 0; color: rgba(244,241,234,0.78);">For us, Kohantei is more than a name in a portfolio. It is the first full example of how we want to work — from the original opportunity and commercial discussions through development, opening and operation. The work is being done with one intention: to operate the restaurant properly after it opens.</p>
+          <p data-reveal="280" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 46ch; margin: 36px 0 0; color: rgba(244,241,234,0.78);">The first restaurant developed under K&amp;K Hospitality, and the first full example of how we work — from the original opportunity and commercial discussions, through development and opening, into operation. It is being built to be run properly, not simply to reach an opening date.</p>
         </div>
         <div data-reveal="240">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); border-bottom: 1px solid rgba(244,241,234,0.18); padding-bottom: 16px;">K&amp;K's role in the project</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.6;">
-            <div style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(244,241,234,0.12);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">01</span><span>Reviewing the opportunity and its commercial potential</span></div>
-            <div style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(244,241,234,0.12);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">02</span><span>Negotiating rent, lease terms and the landlord capital contribution</span></div>
-            <div style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(244,241,234,0.12);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">03</span><span>Clarifying landlord and tenant responsibilities, with direct landlord liaison</span></div>
-            <div style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(244,241,234,0.12);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">04</span><span>Coordinating decisions, dependencies and project priorities</span></div>
-            <div style="display: flex; gap: 18px; padding: 16px 0; border-bottom: 1px solid rgba(244,241,234,0.12);"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">05</span><span>Representing the operational needs of the restaurant during development</span></div>
-            <div style="display: flex; gap: 18px; padding: 16px 0;"><span style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #B08D57; padding-top: 5px;">06</span><span>Preparing the team, systems and operating structure for opening</span></div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); border-bottom: 1px solid rgba(244,241,234,0.18); padding-bottom: 16px;">K&amp;K's role</div>
+          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Opportunity</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Commercial review and securing the location</div>
+          </div>
+          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Commercial</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Rent, lease terms and the landlord capital contribution</div>
+          </div>
+          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Development</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Project coordination, landlord liaison and the restaurant's operational needs</div>
+          </div>
+          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0;">
+            <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Opening</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Team, systems and operating structure</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- What we provide -->
+  <!-- How we work with you -->
   <div id="services" style="background: #F4F1EA; padding: 120px clamp(32px, 6.7vw, 96px) 110px; scroll-margin-top: 96px;">
     <div style="max-width: 1248px; margin: 0 auto;">
       <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
-        <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">What we provide</div>
-        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Consultancy · Development · Management</div>
+        <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">How we work with you</div>
+        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Five ways</div>
       </div>
       <div class="g-2col" style="display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; margin-bottom: 24px;">
         <div></div>
-        <p data-reveal="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(20px, 2vw, 25px); line-height: 1.5; max-width: 44ch; margin: 0;">The same owner-and-operator thinking used in our own projects is available to selected clients — at the beginning of an idea, during development, before opening or after a venue is already operating. The role depends on what the owner needs and how much responsibility K&amp;K is expected to take.</p>
+        <p data-reveal="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(20px, 2vw, 25px); line-height: 1.5; max-width: 44ch; margin: 0;">The same owner-and-operator thinking behind our own venues is available to selected clients — from the first idea to an operating business. The role depends on what the owner needs and how much responsibility K&amp;K is expected to take.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
+      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">01</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Strategy, positioning &amp; feasibility</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Before committing significant time and capital, we help the owner understand whether the opportunity makes sense and how it should be approached — the market, location, audience, concept positioning, commercial assumptions, operating model and the practical requirements behind the idea.</p>
+        <div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 36px); line-height: 1.12; padding-top: 2px;">Investment &amp; partnership</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 16px;">Ownership · Joint ventures · Operating agreements</div>
+        </div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">For selected opportunities where K&amp;K invests, partners, develops or operates — a focused portfolio of venues we are closely involved in, rather than a long list of concepts.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
+      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">02</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Concept &amp; restaurant development</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">We help turn the idea into a restaurant or hospitality concept that can actually be built and operated — the operating brief, guest journey, service model, restaurant flow, kitchen and operational requirements, equipment priorities, opening budgets and coordination with appointed designers and specialists.</p>
+        <div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 36px); line-height: 1.12; padding-top: 2px;">Consultancy</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 16px;">Strategy · Feasibility · Concept</div>
+        </div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">A defined review before significant time and capital is committed: the market, location, audience, concept positioning, commercial assumptions and operating model behind the idea.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
+      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">03</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Pre-opening &amp; launch</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Opening preparation is where many projects become rushed and disconnected. We bring the workstreams together and keep the operation at the centre — the pre-opening plan, manpower, recruitment, operating procedures, suppliers, systems, training, budgets, opening inventories, readiness reviews and soft-opening support.</p>
+        <div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 36px); line-height: 1.12; padding-top: 2px;">Development &amp; pre-opening</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 16px;">Operating brief · Pre-opening · Launch</div>
+        </div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Practical leadership from operating brief to opening day — guest journey, kitchen and operational requirements, budgets, recruitment, suppliers, systems, training and readiness — keeping the operation at the centre of a process that too often becomes rushed.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
+      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">04</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Operations &amp; commercial performance</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">For an operating venue, we look beyond surface-level sales at how the business is being managed and where attention is required — revenue, food and beverage cost, labour, purchasing, inventory, menu performance, service standards, guest feedback, reporting and management accountability.</p>
+        <div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 36px); line-height: 1.12; padding-top: 2px;">Owner representation</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 16px;">Oversight · Coordination · Reporting</div>
+        </div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">An independent view for owners who cannot be inside every discussion: landlord liaison, coordination of appointed consultants, monitoring of key decisions and clear reporting on the project or the operating business.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
+      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">05</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Owner representation</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Not every owner wants — or is able — to remain inside every project discussion. We represent the owner's interests across agreed commercial, development and operating matters: landlord liaison, coordination with appointed consultants, monitoring key decisions, reviewing progress and providing a clear, independent view.</p>
+        <div>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(28px, 2.8vw, 36px); line-height: 1.12; padding-top: 2px;">Management</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 16px;">Operations · Performance · Accountability</div>
+        </div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Direct responsibility for running the venue under an agreed structure of authority — leadership, financial controls, people, purchasing, service standards and commercial reporting. Continuing responsibility for the business, not only advice.</p>
       </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">06</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Restaurant &amp; venue management</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">Where K&amp;K accepts a management appointment, we take a direct role in running the business under an agreed structure of authority and accountability — leadership, budgeting, financial controls, people, purchasing, service standards and commercial reporting. A management appointment involves continuing responsibility for the business, not only advice.</p>
-      </div>
-      <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; align-items: start;">
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">07</div>
-        <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(30px, 3vw, 40px); line-height: 1.12; padding-top: 2px;">Market entry &amp; expansion</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 10px;">For hospitality brands entering the UAE or GCC, and regional concepts expanding into new markets — assessing the opportunity, local positioning, operating requirements, development planning, pre-opening and implementation. Legal, tax, franchise documentation and authority approvals remain with the appropriate appointed professionals.</p>
+      <div data-reveal="0" class="g-2col" style="display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); padding-top: 40px;">
+        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; padding-top: 4px;">Market entry</div>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.65; max-width: 62ch; margin: 0; color: #5A6B62;">For brands entering the UAE or GCC and regional concepts expanding abroad, we combine these roles as the opportunity requires. Legal, tax, franchise documentation and authority approvals remain with the appropriate appointed professionals.</p>
       </div>
     </div>
   </div>
 
   <!-- Leadership -->
-  <div id="leadership" style="padding: 120px clamp(32px, 6.7vw, 96px) 136px; scroll-margin-top: 96px;">
+  <div id="leadership" style="padding: 120px clamp(32px, 6.7vw, 96px) 128px; scroll-margin-top: 96px;">
     <div style="max-width: 1248px; margin: 0 auto;">
       <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Leadership</div>
@@ -259,11 +275,10 @@
         <div>
           <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(26px, 2.4vw, 32px); line-height: 1.15;">Mohamed Kamali</div>
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; margin-top: 14px;">Managing Director</div>
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 8px;">Investment · Hospitality Development</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 8px;">Investment · Hospitality development</div>
         </div>
         <div style="padding-top: 6px;">
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 0;">Mohamed brings the perspective of an owner and investor, but his understanding of hospitality is not only financial. He previously worked as a chef in Los Angeles under a renowned Michelin-starred chef — a hands-on grounding in kitchen discipline, product quality, culinary standards and the work required behind the scenes to deliver a strong guest experience.</p>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 16px 0 0; color: #5A6B62;">At K&amp;K he is involved in assessing opportunities, investment strategy, commercial structure, concept positioning, culinary relationships and long-term development — closely involved in Kohantei from both the ownership and concept side of the business.</p>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 0;">An owner and investor whose understanding of hospitality is not only financial: Mohamed previously worked as a chef in Los Angeles under a renowned Michelin-starred chef. At K&amp;K he leads opportunity assessment, investment strategy, commercial structure and concept positioning, and is closely involved in Kohantei from both the ownership and the concept side.</p>
         </div>
       </div>
       <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(200px, 280px) minmax(170px, 0.8fr) minmax(0, 1.4fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
@@ -276,13 +291,12 @@
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 8px;">Operations · Development</div>
         </div>
         <div style="padding-top: 6px;">
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 0;">Mihai brings extensive restaurant development and operating experience from the UAE and GCC. He has led teams of more than 100 employees, developed and opened premium restaurant concepts in Dubai, and led a major restaurant opening that received Michelin Opening of the Year recognition.</p>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 16px 0 0; color: #5A6B62;">He currently leads the development and pre-opening of Kohantei at The Galleria Abu Dhabi — project coordination, landlord liaison, operating requirements, team development, systems and opening readiness.</p>
+          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.7; max-width: 56ch; margin: 0;">Extensive restaurant development and operating experience across the UAE and GCC: Mihai has led teams of more than 100, opened premium restaurant concepts in Dubai and led a major opening recognised as Michelin Opening of the Year. He leads the development and pre-opening of Kohantei — project coordination, landlord liaison, team, systems and opening readiness.</p>
         </div>
       </div>
       <div data-reveal="0" class="g-2col" style="display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); padding-top: 56px;">
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62; padding-top: 8px;">The partnership</div>
-        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(20px, 2vw, 25px); line-height: 1.55; max-width: 46ch; margin: 0;">Mohamed looks at the opportunity as an investor, owner and someone who has worked inside a professional kitchen. Mihai looks at how the concept will be developed, opened, staffed, controlled and operated every day. Together, they can follow the full journey — from the first discussion and investment decision to opening, operation and future growth.</p>
+        <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(20px, 2vw, 25px); line-height: 1.55; max-width: 46ch; margin: 0;">Mohamed looks at the opportunity as an investor, an owner and someone who has worked inside a professional kitchen. Mihai looks at how it will be developed, opened, staffed, controlled and run every day.</p>
       </div>
     </div>
   </div>
@@ -301,61 +315,24 @@
   <!-- Our market -->
   <div id="market" style="background: #F4F1EA; padding: 120px clamp(32px, 6.7vw, 96px) 128px; scroll-margin-top: 96px;">
     <div style="max-width: 1248px; margin: 0 auto;">
-      <div data-rule="1" data-tick="1" style="border-top: 1px solid #0E0F10; padding-top: 20px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Our market</div>
+      <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
+        <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Our market</div>
+        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">UAE · GCC · Selected international</div>
+      </div>
       <div class="g-2col" style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); margin-top: 64px; align-items: start;">
         <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(32px, 3.4vw, 44px); line-height: 1.2; margin: 0; max-width: 20ch;">Based in the UAE, open to the <em style="font-style: italic; font-weight: 200;">right</em> opportunity.</h2>
-        <div style="padding-top: 4px;">
-          <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0;">The UAE is our home market. We understand its landlords, developers, investment environment, operating conditions and the expectations of a very diverse guest base. Our immediate focus is the UAE and GCC, but we are not closing the door on international opportunities — the right partnership, concept or location can be considered wherever K&amp;K can bring genuine value and remain properly involved.</p>
-          <p data-reveal="220" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 24px 0 0; color: #5A6B62;">A restaurant in Abu Dhabi, a cafe in a shopping mall, a food and beverage venue inside a hotel and an international brand entering the region cannot be approached in the same way. Each opportunity needs to be understood on its own terms.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ways to work with K&K -->
-  <div id="engagement" style="padding: 120px clamp(32px, 6.7vw, 96px) 136px; scroll-margin-top: 96px; background: #CDD9D3;">
-    <div style="max-width: 1248px; margin: 0 auto;">
-      <div data-rule="1" class="rule-head" style="border-top: 1px solid #0E0F10; padding-top: 20px; display: flex; justify-content: space-between;">
-        <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Ways to work with K&amp;K</div>
-        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Five models</div>
-      </div>
-      <div data-stagger="100" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 64px;">
-        <div data-reveal="0" style="background: #DDE5E0; padding: 28px 28px 32px; min-height: 240px; display: flex; flex-direction: column; box-sizing: border-box;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">I</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.2; margin-top: auto; padding-top: 40px;">Investment &amp; partnership</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.6; color: #5A6B62; margin: 12px 0 0;">For selected opportunities where K&amp;K may invest, partner, develop or operate.</p>
-        </div>
-        <div data-reveal="0" style="background: #DDE5E0; padding: 28px 28px 32px; min-height: 240px; display: flex; flex-direction: column; box-sizing: border-box;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">II</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.2; margin-top: auto; padding-top: 40px;">Consultancy</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.6; color: #5A6B62; margin: 12px 0 0;">For a defined review, decision, commercial question or area of specialist hospitality support.</p>
-        </div>
-        <div data-reveal="0" style="background: #DDE5E0; padding: 28px 28px 32px; min-height: 240px; display: flex; flex-direction: column; box-sizing: border-box;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">III</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.2; margin-top: auto; padding-top: 40px;">Development &amp; pre-opening</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.6; color: #5A6B62; margin: 12px 0 0;">For a new venue that needs practical leadership from concept development through opening preparation.</p>
-        </div>
-        <div data-reveal="0" style="background: #DDE5E0; padding: 28px 28px 32px; min-height: 240px; display: flex; flex-direction: column; box-sizing: border-box;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">IV</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.2; margin-top: auto; padding-top: 40px;">Owner representation</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.6; color: #5A6B62; margin: 12px 0 0;">For owners who need experienced oversight, coordination and clear reporting across a project or operating business.</p>
-        </div>
-        <div data-reveal="0" style="background: #DDE5E0; padding: 28px 28px 32px; min-height: 240px; display: flex; flex-direction: column; box-sizing: border-box;">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">V</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 24px; line-height: 1.2; margin-top: auto; padding-top: 40px;">Management</div>
-          <p style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 15px; line-height: 1.6; color: #5A6B62; margin: 12px 0 0;">For venues requiring direct operating leadership under an agreed management structure.</p>
-        </div>
+        <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 52ch; margin: 0; padding-top: 4px;">The UAE is our home market — we understand its landlords, developers, investment environment and the expectations of a very diverse guest base. Our immediate focus is the UAE and GCC; the right partnership, concept or location can be considered wherever K&amp;K can bring genuine value and remain properly involved.</p>
       </div>
     </div>
   </div>
 
   <!-- Contact -->
-  <div id="contact-us" style="background: #F4F1EA; padding: 88px clamp(32px, 6.7vw, 96px) 128px; scroll-margin-top: 96px;">
+  <div id="contact-us" style="padding: 88px clamp(32px, 6.7vw, 96px) 128px; scroll-margin-top: 96px;">
     <div data-rule="1" class="g-contact" style="max-width: 1248px; margin: 0 auto; border-top: 1px solid #0E0F10; padding-top: 88px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(24px, 4vw, 64px); align-items: start;">
       <div>
         <div data-reveal="0" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Contact us</div>
         <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(38px, 4.2vw, 54px); line-height: 1.12; margin: 32px 0 0;">Start a conversation.</h2>
-        <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 48ch; margin: 28px 0 0;">If you are considering a hospitality investment, developing a new concept, preparing a venue for opening or looking for an experienced operating partner — speak with us about the opportunity and where you need support.</p>
+        <p data-reveal="140" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 48ch; margin: 28px 0 0;">Considering a hospitality investment, developing a new concept, preparing a venue for opening or looking for an experienced operating partner? Tell us about the opportunity and where you need support.</p>
       </div>
       <div data-reveal="160" style="padding-top: 46px;">
         <div class="g-crow" style="border-top: 1px solid rgba(14,15,16,0.13); padding: 18px 0; display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: baseline;">
@@ -406,6 +383,14 @@
       });
       burgerNav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    }
+    const sectorsMenu = document.getElementById('kk-sectors-menu');
+    if (sectorsMenu) {
+      const trigger = sectorsMenu.querySelector('button');
+      const setOpen = (open) => { sectorsMenu.classList.toggle('open', open); trigger.setAttribute('aria-expanded', String(open)); };
+      trigger.addEventListener('click', () => setOpen(!sectorsMenu.classList.contains('open')));
+      document.addEventListener('click', (e) => { if (!sectorsMenu.contains(e.target)) setOpen(false); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
     }
 
     function mountField(canvas, cfg) {
@@ -596,7 +581,7 @@
     }
     const navEl = document.getElementById('kk-nav');
     if (navEl) {
-      Array.from(navEl.querySelectorAll('a')).forEach((a, i) => {
+      Array.from(navEl.querySelectorAll('.nav-inner > a, .nav-links > a, .nav-menu > button')).forEach((a, i) => {
         a.style.opacity = '0'; a.style.transform = 'translateY(-8px)';
         void a.offsetWidth;
         a.style.transition = 'opacity 0.6s ' + ease + ' ' + (1000 + i * 80) + 'ms, transform 0.6s ' + ease + ' ' + (1000 + i * 80) + 'ms, color 300ms cubic-bezier(0.25,0.1,0.25,1)';
