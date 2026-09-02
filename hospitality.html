@@ -24,7 +24,33 @@
     .rule-head { flex-wrap: wrap; gap: 8px 24px; }
     .footer-band { padding: 72px clamp(32px, 6.7vw, 96px) 64px !important; }
     .principle-row { grid-template-columns: 36px minmax(0, 1fr) !important; gap: 14px !important; }
+    .hero-plan { width: 130% !important; right: -45% !important; opacity: 0.16 !important; }
+    .journey-head { display: none !important; }
+    .journey-row { grid-template-columns: 1fr !important; gap: 14px !important; padding: 22px 0 !important; }
+    .journey-range { display: block !important; }
+    .cred-grid { grid-template-columns: 1fr !important; }
+    .track-label { font-size: 9px !important; }
   }
+  .photo-slot { position: relative; overflow: hidden; }
+  .photo-slot svg { position: absolute; left: -22%; top: 50%; width: 144%; transform: translateY(-50%); aspect-ratio: 640 / 420; pointer-events: none; }
+  .photo-slot .slot-note { position: absolute; left: 20px; right: 20px; bottom: 18px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.7; }
+  .journey-head, .journey-row { display: grid; grid-template-columns: minmax(180px, 300px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+  .journey-stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
+  .journey-track { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); height: 34px; align-items: center; }
+  .journey-track::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px solid rgba(14,15,16,0.13); }
+  .journey-bar { position: relative; height: 8px; background: #B08D57; opacity: 0.85; }
+  .journey-bar::before, .journey-bar::after { content: ''; position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; background: #F4F1EA; border: 1px solid #8A6F3F; transform: translate(0, -50%); }
+  .journey-bar::before { left: -1px; }
+  .journey-bar::after { right: -1px; }
+  .journey-range { display: none; }
+  .track { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .track::before { content: ''; position: absolute; left: 7px; right: 7px; top: 7px; border-top: 1px solid rgba(244,241,234,0.22); }
+  .track-step { position: relative; padding-top: 30px; }
+  .track-dot { position: absolute; top: 0; left: 0; width: 13px; height: 13px; border-radius: 50%; border: 1px solid #B08D57; background: transparent; box-sizing: border-box; }
+  .track-step.done .track-dot { background: #B08D57; }
+  .track-step.now .track-dot { background: #B08D57; box-shadow: 0 0 0 5px rgba(176,141,87,0.22); }
+  @media (prefers-reduced-motion: no-preference) { .track-step.now .track-dot { animation: kk-pulse 2.6s ease-in-out infinite; } }
+  @keyframes kk-pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(176,141,87,0.16); } 50% { box-shadow: 0 0 0 9px rgba(176,141,87,0.05); } }
   .nav-menu { position: relative; padding: 26px 0; margin: -26px 0; }
   .nav-menu > .nav-a { background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: baseline; gap: 0.5em; }
   .nav-menu > .nav-a .nav-caret { font-size: 8px; transition: transform 300ms cubic-bezier(0.25,0.1,0.25,1); }
@@ -88,6 +114,7 @@
   <div id="top" data-nav-dark="1" style="position: relative; min-height: calc(100vh - 92px); background: #0E0F10; color: #F4F1EA; overflow: hidden; display: flex; align-items: center; padding: 120px clamp(32px, 6.7vw, 96px); box-sizing: border-box;">
     <canvas id="kk-field-hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; filter: blur(26px); transform: scale(1.08);"></canvas>
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(14,15,16,0.3) 0%, rgba(14,15,16,0) 32%, rgba(14,15,16,0) 55%, rgba(14,15,16,0.55) 100%); pointer-events: none;"></div>
+    <svg class="hero-plan" data-plan="#B08D57" aria-hidden="true" style="position: absolute; right: -6%; top: 50%; width: 60%; aspect-ratio: 640 / 420; transform: translateY(-50%); opacity: 0.3; pointer-events: none; z-index: 1;"></svg>
     <div style="position: relative; z-index: 2; max-width: 1248px; margin: 0 auto; width: 100%;">
       <div data-reveal="420" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,241,234,0.6);">K&amp;K Hospitality · Abu Dhabi</div>
       <h1 data-lines="560" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(44px, 6.5vw, 76px); line-height: 1.08; letter-spacing: -0.008em; margin: 40px 0 0; max-width: 17ch;">We know hospitality from <em style="font-style: italic; font-weight: 200;">both</em> sides.</h1>
@@ -175,29 +202,43 @@
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(244,241,234,0.60);">Our first venue</div>
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">In development · Pre-opening</div>
       </div>
-      <div class="g-2col" style="display: grid; grid-template-columns: minmax(280px, 1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); margin-top: 88px; align-items: start;">
+      <div class="g-2col" style="display: grid; grid-template-columns: minmax(280px, 1.1fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); margin-top: 88px; align-items: start;">
         <div>
           <h2 data-lines="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(44px, 5.4vw, 68px); line-height: 1.05; margin: 0;"><em style="font-style: italic; font-weight: 200;">Kohantei</em></h2>
           <div data-reveal="200" data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); margin-top: 24px;">The Galleria · Al Maryah Island · Abu Dhabi</div>
           <p data-reveal="280" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.65; max-width: 46ch; margin: 36px 0 0; color: rgba(244,241,234,0.78);">The first restaurant developed under K&amp;K Hospitality, and the first full example of how we work — from the original opportunity and commercial discussions, through development and opening, into operation. It is being built to be run properly, not simply to reach an opening date.</p>
+          <div data-reveal="360" style="margin-top: 56px; max-width: 520px;">
+            <div class="track">
+              <div class="track-step done"><div class="track-dot"></div><div class="track-label" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.6); line-height: 1.6; padding-right: 10px;">Opportunity secured</div></div>
+              <div class="track-step now"><div class="track-dot"></div><div class="track-label" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F4F1EA; line-height: 1.6; padding-right: 10px;">Development</div></div>
+              <div class="track-step now"><div class="track-dot"></div><div class="track-label" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #F4F1EA; line-height: 1.6; padding-right: 10px;">Pre-opening</div></div>
+              <div class="track-step"><div class="track-dot"></div><div class="track-label" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.4); line-height: 1.6;">Opening</div></div>
+            </div>
+          </div>
         </div>
-        <div data-reveal="240">
-          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); border-bottom: 1px solid rgba(244,241,234,0.18); padding-bottom: 16px;">K&amp;K's role</div>
-          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+        <div data-reveal="240" class="photo-slot" style="aspect-ratio: 4 / 3; background: rgba(244,241,234,0.05); border: 1px solid rgba(244,241,234,0.14);">
+          <svg data-plan="#B08D57" aria-hidden="true" style="opacity: 0.32;"></svg>
+          <div class="slot-note" style="color: rgba(244,241,234,0.6);">Fig. 01 · Photography to follow<br>Kohantei, The Galleria</div>
+        </div>
+      </div>
+      <div data-reveal="0" style="margin-top: 80px;">
+        <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,241,234,0.60); border-bottom: 1px solid rgba(244,241,234,0.18); padding-bottom: 16px;">K&amp;K's role</div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px clamp(24px, 3vw, 48px); margin-top: 28px;">
+          <div>
             <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Opportunity</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Commercial review and securing the location</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55; margin-top: 12px; color: rgba(244,241,234,0.85);">Commercial review and securing the location</div>
           </div>
-          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+          <div>
             <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Commercial</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Rent, lease terms and the landlord capital contribution</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55; margin-top: 12px; color: rgba(244,241,234,0.85);">Rent, lease terms and the landlord capital contribution</div>
           </div>
-          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid rgba(244,241,234,0.12);">
+          <div>
             <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Development</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Project coordination, landlord liaison and the restaurant's operational needs</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55; margin-top: 12px; color: rgba(244,241,234,0.85);">Project coordination, landlord liaison and the restaurant's operational needs</div>
           </div>
-          <div class="g-crow" style="display: grid; grid-template-columns: 140px 1fr; gap: 24px; align-items: baseline; padding: 18px 0;">
+          <div>
             <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B08D57;">Opening</div>
-            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55;">Team, systems and operating structure</div>
+            <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 16px; line-height: 1.55; margin-top: 12px; color: rgba(244,241,234,0.85);">Team, systems and operating structure</div>
           </div>
         </div>
       </div>
@@ -214,6 +255,34 @@
       <div class="g-2col" style="display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); margin-top: 64px; margin-bottom: 24px;">
         <div></div>
         <p data-reveal="0" style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(20px, 2vw, 25px); line-height: 1.5; max-width: 44ch; margin: 0;">The same owner-and-operator thinking behind our own venues is available to selected clients — from the first idea to an operating business. The role depends on what the owner needs and how much responsibility K&amp;K is expected to take.</p>
+      </div>
+      <div data-reveal="0" style="margin: 64px 0 40px;">
+        <div class="journey-head" style="padding-bottom: 14px; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62;">Where we step in</div>
+          <div class="journey-stages" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">
+            <div>Idea</div><div>Feasibility</div><div>Concept</div><div>Development</div><div>Pre-opening</div><div>Operating</div>
+          </div>
+        </div>
+        <div class="journey-row" style="padding: 14px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div><div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.3;">Investment &amp; partnership</div><div class="journey-range" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 6px;">Idea → Operating</div></div>
+          <div class="journey-track"><div class="journey-bar" style="grid-column: 1 / 7;"></div></div>
+        </div>
+        <div class="journey-row" style="padding: 14px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div><div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.3;">Consultancy</div><div class="journey-range" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 6px;">Idea → Concept</div></div>
+          <div class="journey-track"><div class="journey-bar" style="grid-column: 1 / 4;"></div></div>
+        </div>
+        <div class="journey-row" style="padding: 14px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div><div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.3;">Development &amp; pre-opening</div><div class="journey-range" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 6px;">Concept → Pre-opening</div></div>
+          <div class="journey-track"><div class="journey-bar" style="grid-column: 3 / 6;"></div></div>
+        </div>
+        <div class="journey-row" style="padding: 14px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div><div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.3;">Owner representation</div><div class="journey-range" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 6px;">Feasibility → Operating</div></div>
+          <div class="journey-track"><div class="journey-bar" style="grid-column: 2 / 7;"></div></div>
+        </div>
+        <div class="journey-row" style="padding: 14px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
+          <div><div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: 17px; line-height: 1.3;">Management</div><div class="journey-range" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F; margin-top: 6px;">Pre-opening → Operating</div></div>
+          <div class="journey-track"><div class="journey-bar" style="grid-column: 5 / 7;"></div></div>
+        </div>
       </div>
       <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(70px, 150px) minmax(200px, 1.2fr) minmax(0, 1.6fr); gap: clamp(24px, 4vw, 64px); padding: 56px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: 44px; line-height: 1; color: #8A6F3F;">01</div>
@@ -269,6 +338,20 @@
         <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: #5A6B62;">Leadership</div>
         <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Two perspectives · one business</div>
       </div>
+      <div data-stagger="100" class="cred-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px;">
+        <div data-reveal="0" style="background: #DDE5E0; padding: 26px 28px 28px; box-sizing: border-box;">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2;">Michelin-starred kitchen</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; margin-top: 14px;">Los Angeles · Mohamed Kamali</div>
+        </div>
+        <div data-reveal="0" style="background: #DDE5E0; padding: 26px 28px 28px; box-sizing: border-box;">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2;">Teams of 100+</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; margin-top: 14px;">Led across the UAE &amp; GCC · Mihai Giurebe</div>
+        </div>
+        <div data-reveal="0" style="background: #DDE5E0; padding: 26px 28px 28px; box-sizing: border-box;">
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2;">Opening of the Year</div>
+          <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62; margin-top: 14px;">Michelin recognition · Mihai Giurebe</div>
+        </div>
+      </div>
       <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(200px, 280px) minmax(170px, 0.8fr) minmax(0, 1.4fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
         <div class="g-portrait" style="position: relative; aspect-ratio: 4 / 5; background: #DDE5E0;">
           <img src="./uploads/mohammed-kamali.webp" alt="Mohamed Kamali" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; object-position: bottom center;">
@@ -283,8 +366,9 @@
         </div>
       </div>
       <div data-reveal="0" class="g-3col" style="display: grid; grid-template-columns: minmax(200px, 280px) minmax(170px, 0.8fr) minmax(0, 1.4fr); gap: clamp(24px, 4vw, 64px); padding: 64px 0; border-bottom: 1px solid rgba(14,15,16,0.13); align-items: start;">
-        <div class="g-portrait" style="position: relative; aspect-ratio: 4 / 5; background: #DDE5E0; display: flex; align-items: center; justify-content: center;">
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-style: italic; font-weight: 200; font-size: 72px; color: #8A6F3F; opacity: 0.55;">MG</div>
+        <div class="g-portrait photo-slot" style="aspect-ratio: 4 / 5; background: #DDE5E0;">
+          <svg data-plan="#8A6F3F" aria-hidden="true" style="opacity: 0.35;"></svg>
+          <div class="slot-note" style="color: #5A6B62;">Portrait to follow</div>
         </div>
         <div>
           <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; font-size: clamp(26px, 2.4vw, 32px); line-height: 1.15;">Mihai Giurebe</div>
@@ -309,7 +393,7 @@
   <div style="background: #F4F1EA; padding: 18px clamp(32px, 6.7vw, 96px) 0;">
     <div style="max-width: 1248px; margin: 0 auto; display: flex; justify-content: space-between;">
       <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #5A6B62;">Abu Dhabi · dusk</div>
-      <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Fig. 01</div>
+      <div data-tick="1" style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Fig. 02</div>
     </div>
   </div>
 
@@ -533,7 +617,56 @@
         dunesRT = setTimeout(buildDunes, 180);
       }, { passive: true });
     }
+    // Schematic dining-room plan, drawn in hairlines like the footer dunes
+    const planRecs = [];
+    Array.from(document.querySelectorAll('svg[data-plan]')).forEach((svg) => {
+      const stroke = svg.getAttribute('data-plan') || '#8A6F3F';
+      const NS = 'http://www.w3.org/2000/svg';
+      svg.setAttribute('viewBox', '0 0 640 420');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      const shapes = [];
+      const add = (tag, attrs) => {
+        const e = document.createElementNS(NS, tag);
+        Object.keys(attrs).forEach((k) => e.setAttribute(k, attrs[k]));
+        e.setAttribute('fill', 'none'); e.setAttribute('stroke', stroke); e.setAttribute('stroke-width', '1'); e.setAttribute('pathLength', '1');
+        if (!reduced) { e.style.strokeDasharray = '1'; e.style.strokeDashoffset = '1'; }
+        svg.appendChild(e); shapes.push(e);
+      };
+      add('rect', { x: 20, y: 20, width: 600, height: 380 });
+      add('rect', { x: 40, y: 40, width: 300, height: 48 });
+      for (let x = 62; x < 340; x += 28) add('line', { x1: x, y1: 40, x2: x - 16, y2: 88 });
+      add('line', { x1: 40, y1: 108, x2: 340, y2: 108 });
+      add('rect', { x: 480, y: 40, width: 120, height: 230 });
+      for (let y = 64; y <= 250; y += 36) add('circle', { cx: 458, cy: y, r: 6 });
+      const round = (cx, cy, r, seats) => {
+        add('circle', { cx, cy, r });
+        for (let i = 0; i < seats; i++) { const a = (i / seats) * Math.PI * 2; add('circle', { cx: (cx + Math.cos(a) * (r + 12)).toFixed(1), cy: (cy + Math.sin(a) * (r + 12)).toFixed(1), r: 5 }); }
+      };
+      const square = (cx, cy, s) => {
+        add('rect', { x: cx - s / 2, y: cy - s / 2, width: s, height: s });
+        add('line', { x1: cx - 8, y1: cy - s / 2 - 9, x2: cx + 8, y2: cy - s / 2 - 9 });
+        add('line', { x1: cx - 8, y1: cy + s / 2 + 9, x2: cx + 8, y2: cy + s / 2 + 9 });
+        add('line', { x1: cx - s / 2 - 9, y1: cy - 8, x2: cx - s / 2 - 9, y2: cy + 8 });
+        add('line', { x1: cx + s / 2 + 9, y1: cy - 8, x2: cx + s / 2 + 9, y2: cy + 8 });
+      };
+      [[90, 170], [300, 170], [90, 330], [300, 330]].forEach((p) => round(p[0], p[1], 22, 6));
+      [[195, 170], [195, 330], [400, 170], [400, 330]].forEach((p) => square(p[0], p[1], 30));
+      [[520, 330], [580, 330]].forEach((p) => square(p[0], p[1], 22));
+      planRecs.push({ svg, shapes });
+    });
     if (reduced) return;
+    if (planRecs.length) {
+      const planIO = new IntersectionObserver((ens) => {
+        ens.forEach((en) => {
+          if (!en.isIntersecting) return;
+          planIO.unobserve(en.target);
+          const rec = planRecs.find((r) => r.svg === en.target);
+          if (!rec) return;
+          rec.shapes.forEach((s, i) => { s.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1) ' + (i * 22) + 'ms'; s.style.strokeDashoffset = '0'; });
+        });
+      }, { threshold: 0.05 });
+      planRecs.forEach((r) => planIO.observe(r.svg));
+    }
     if (dunesSvg) {
       const dunesIO = new IntersectionObserver((ens) => {
         ens.forEach((en) => {
