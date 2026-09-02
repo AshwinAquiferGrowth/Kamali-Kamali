@@ -26,6 +26,16 @@
     .footer-band { padding: 72px clamp(32px, 6.7vw, 96px) 64px !important; }
     .sector-row { grid-template-columns: 36px minmax(0, 1fr) !important; gap: 14px !important; }
   }
+  .nav-menu { position: relative; padding: 26px 0; margin: -26px 0; }
+  .nav-menu > .nav-a { background: none; border: 0; padding: 0; cursor: pointer; display: inline-flex; align-items: baseline; gap: 0.5em; }
+  .nav-menu > .nav-a .nav-caret { font-size: 8px; transition: transform 300ms cubic-bezier(0.25,0.1,0.25,1); }
+  .nav-sub { display: none; position: absolute; top: 100%; left: -22px; min-width: 340px; white-space: nowrap; flex-direction: column; background: var(--nav-bg, #0E0F10); border: 1px solid var(--nav-line, rgba(244,241,234,0.14)); border-top: 0; padding: 8px 0 10px; z-index: 11; }
+  .nav-menu:hover .nav-sub, .nav-menu.open .nav-sub, .nav-menu:focus-within .nav-sub { display: flex; }
+  .nav-menu:hover .nav-caret, .nav-menu.open .nav-caret { transform: translateY(1px) rotate(180deg); }
+  .nav-sub a, .nav-sub span { font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 11px 22px; color: var(--nav-fg2, rgba(244,241,234,0.85)); display: flex; justify-content: space-between; gap: 24px; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1); }
+  .nav-sub a:hover { color: var(--nav-accent, #B08D57); opacity: 1; }
+  .nav-sub span { opacity: 0.4; cursor: default; }
+  .nav-sub .nav-tag { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 9px; letter-spacing: 0.18em; opacity: 0.8; }
   .nav-burger { display: none; background: none; border: 0; padding: 10px 0 10px 16px; cursor: pointer; }
   .nav-burger span { display: block; width: 22px; height: 1px; background: var(--nav-fg, #F4F1EA); transition: transform 320ms cubic-bezier(0.25,0.1,0.25,1), opacity 320ms cubic-bezier(0.25,0.1,0.25,1), background 450ms cubic-bezier(0.25,0.1,0.25,1); }
   .nav-burger span + span { margin-top: 6px; }
@@ -34,6 +44,11 @@
     .nav-links { display: none !important; }
     #kk-nav.menu-open .nav-links { display: flex !important; flex-direction: column; align-items: flex-start !important; gap: 0 !important; position: absolute; top: 100%; left: 0; right: 0; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); padding: 6px clamp(32px, 6.7vw, 96px) 18px; transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); }
     #kk-nav.menu-open .nav-links a { padding: 13px 0; }
+    #kk-nav.menu-open .nav-menu { padding: 0; margin: 0; display: flex; flex-direction: column; align-items: flex-start; width: 100%; }
+    #kk-nav.menu-open .nav-menu > .nav-a { padding: 13px 0; }
+    #kk-nav.menu-open .nav-sub { display: flex; position: static; min-width: 0; width: 100%; border: 0; padding: 0 0 6px 18px; box-sizing: border-box; }
+    #kk-nav.menu-open .nav-sub a, #kk-nav.menu-open .nav-sub span { padding: 10px 0; }
+    #kk-nav.menu-open .nav-caret { display: none; }
     #kk-nav.menu-open .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     #kk-nav.menu-open .nav-burger span:nth-child(2) { opacity: 0; }
     #kk-nav.menu-open .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -53,6 +68,15 @@
       <div class="nav-links" id="kk-nav-links" style="display: flex; flex-wrap: wrap; gap: clamp(16px, 2.5vw, 36px); align-items: baseline;">
         <a href="#about-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">About us</a>
         <a href="#what-we-do" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">What we do</a>
+        <div class="nav-menu" id="kk-sectors-menu">
+          <button type="button" class="nav-a" aria-haspopup="true" aria-expanded="false" aria-controls="kk-sectors-sub" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Sectors<span class="nav-caret" aria-hidden="true">▼</span></button>
+          <div class="nav-sub" id="kk-sectors-sub">
+            <a href="./hospitality.html">Hospitality</a>
+            <span aria-disabled="true">Investment &amp; real estate<span class="nav-tag">Soon</span></span>
+            <span aria-disabled="true">AI &amp; business transformation<span class="nav-tag">Soon</span></span>
+            <span aria-disabled="true">Education &amp; institutions<span class="nav-tag">Soon</span></span>
+          </div>
+        </div>
         <a href="#our-values" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Our values</a>
         <a href="#contact-us" class="nav-a" style="font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--nav-fg2, rgba(244,241,234,0.85)); text-decoration: none; transition: color 300ms cubic-bezier(0.25,0.1,0.25,1);">Contact us</a>
       </div>
@@ -266,10 +290,10 @@
         <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #8A6F3F;">Four fields</div>
       </div>
       <div data-stagger="130" style="margin-top: 48px;">
-        <a data-reveal="0" class="sector-row" href="./hospitality.html" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(14,15,16,0.13); text-decoration: none; color: inherit;">
+        <div data-reveal="0" class="sector-row" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">01</div>
-          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.08; letter-spacing: -0.005em;">Hospitality <span aria-hidden="true" style="font-size: 0.55em; color: #8A6F3F;">→</span></div>
-        </a>
+          <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.08; letter-spacing: -0.005em;">Hospitality</div>
+        </div>
         <div data-reveal="0" class="sector-row" style="display: grid; grid-template-columns: minmax(48px, 150px) minmax(0, 1fr); gap: clamp(16px, 4vw, 64px); align-items: baseline; padding: 30px 0; border-bottom: 1px solid rgba(14,15,16,0.13);">
           <div style="font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F;">02</div>
           <div style="font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; font-size: clamp(38px, 5.2vw, 62px); line-height: 1.08; letter-spacing: -0.005em;">Real estate</div>
@@ -343,6 +367,14 @@
       });
       burgerNav.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', closeMenu));
       window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+    }
+    const sectorsMenu = document.getElementById('kk-sectors-menu');
+    if (sectorsMenu) {
+      const trigger = sectorsMenu.querySelector('button');
+      const setOpen = (open) => { sectorsMenu.classList.toggle('open', open); trigger.setAttribute('aria-expanded', String(open)); };
+      trigger.addEventListener('click', () => setOpen(!sectorsMenu.classList.contains('open')));
+      document.addEventListener('click', (e) => { if (!sectorsMenu.contains(e.target)) setOpen(false); });
+      window.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
     }
 
     function mountField(canvas, cfg) {
@@ -533,7 +565,7 @@
     }
     const navEl = document.getElementById('kk-nav');
     if (navEl) {
-      Array.from(navEl.querySelectorAll('a')).forEach((a, i) => {
+      Array.from(navEl.querySelectorAll('.nav-inner > a, .nav-links > a, .nav-menu > button')).forEach((a, i) => {
         a.style.opacity = '0'; a.style.transform = 'translateY(-8px)';
         void a.offsetWidth;
         a.style.transition = 'opacity 0.6s ' + ease + ' ' + (1000 + i * 80) + 'ms, transform 0.6s ' + ease + ' ' + (1000 + i * 80) + 'ms, color 300ms cubic-bezier(0.25,0.1,0.25,1)';
