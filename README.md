@@ -33,3 +33,14 @@ Conventions:
 python3 -m http.server 8321
 # then open http://localhost:8321/
 ```
+
+## Deployment
+
+The site is deployed on Vercel from this repository. `main` is the production
+branch; every push to it goes live, and every other branch gets a preview URL.
+
+Vercel runs `node build.js` and serves `public/` (see `vercel.json`), which the
+build exports alongside the root pages: the same HTML with clean, extension-less
+links (`/hospitality`), the shared assets, and the web-sized images. The originals
+under `uploads/kohantei/source/` are kept in the repository but not deployed.
+`public/` is generated and ignored by git.
