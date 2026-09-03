@@ -1,9 +1,51 @@
 // Kamali & Kamali — shared behaviour (nav, ambient fields, reveals, floor plan, dunes).
 // Loaded by every page via build.js.
 (function () {
+  function curtain(done) {
+    const c = document.getElementById('kk-curtain');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let seen = false;
+    try { seen = !!sessionStorage.getItem('kk-curtain'); } catch (e) {}
+    if (!c || reduced || seen) { if (c) c.remove(); done(); return; }
+    try { sessionStorage.setItem('kk-curtain', '1'); } catch (e) {}
+    const html = document.documentElement;
+    html.style.overflow = 'hidden';
+    let lifted = false;
+    const lift = () => {
+      if (lifted) return;
+      lifted = true;
+      html.style.overflow = '';
+      c.classList.add('lift');
+      done();
+      setTimeout(() => c.remove(), 1000);
+    };
+    const chars = 'KAMALI0123456789·—&';
+    const scramble = (node, ms) => {
+      const orig = node.nodeValue; const steps = 10; let k = 0;
+      const iv = setInterval(() => {
+        k++; const reveal = Math.floor(orig.length * k / steps); let out = '';
+        for (let i = 0; i < orig.length; i++) out += i < reveal ? orig[i] : chars[Math.floor(Math.random() * chars.length)];
+        node.nodeValue = out;
+        if (k >= steps) { node.nodeValue = orig; clearInterval(iv); }
+      }, ms / steps);
+    };
+    const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+    Promise.race([fontsReady, new Promise((res) => setTimeout(res, 500))]).then(() => {
+      c.classList.add('show');
+      const mark = c.querySelector('.kk-curtain-mark');
+      Array.from(mark.childNodes).forEach((n) => { if (n.nodeType === 3 && n.nodeValue.trim()) scramble(n, 480); });
+      setTimeout(lift, 950);
+    });
+    setTimeout(lift, 3000); // never hold a visitor longer than this, whatever happens
+  }
+
   function init() {
     if (document.body.__kkMounted) return;
     document.body.__kkMounted = true;
+    curtain(mount);
+  }
+
+  function mount() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const fields = [];
 
