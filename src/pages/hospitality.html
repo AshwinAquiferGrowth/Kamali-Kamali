@@ -9,7 +9,6 @@
   <div id="top" data-nav-dark="1" style="position: relative; min-height: calc(100vh - 92px); min-height: calc(100svh - 92px); background: #0E0F10; color: #F4F1EA; overflow: hidden; display: flex; align-items: center; padding: 120px clamp(32px, 6.7vw, 96px); box-sizing: border-box;">
     <canvas id="kk-field-hero" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; filter: blur(26px); transform: scale(1.08);"></canvas>
     <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(14,15,16,0.3) 0%, rgba(14,15,16,0) 32%, rgba(14,15,16,0) 55%, rgba(14,15,16,0.55) 100%); pointer-events: none;"></div>
-    <svg class="hero-plan" data-plan="#B08D57" aria-hidden="true" style="position: absolute; right: -6%; top: 50%; width: 60%; aspect-ratio: 640 / 420; transform: translateY(-50%); opacity: 0.3; pointer-events: none; z-index: 1;"></svg>
     <div style="position: relative; z-index: 2; max-width: 1248px; margin: 0 auto; width: 100%;">
       <div class="eyebrow-cream" data-reveal="420" data-tick="1">K&amp;K Hospitality · Abu Dhabi</div>
       <h1 class="serif-light" data-lines="560" style="font-size: clamp(44px, 6.5vw, 76px); line-height: 1.08; letter-spacing: -0.008em; margin: 40px 0 0; max-width: 17ch;">We know hospitality from <em class="em">both</em> sides.</h1>
@@ -22,8 +21,16 @@
     </div>
   </div>
 
+  <!-- Kohantei — the counter -->
+  <div data-clip="1" data-parallax="0.06" class="fig-1" style="position: relative; height: 620px; background: #1A1B1C; overflow: hidden;">
+    <img src="./uploads/kohantei/counter.jpg" alt="Concept render of the Kohantei omakase counter, a chef at work beneath a red lacquered ceiling" width="1600" height="900" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+  </div>
+  <div style="background: #F4F1EA; padding: 18px clamp(32px, 6.7vw, 96px) 0;">
+    <div class="wrap mono-muted" data-tick="1">Concept render, Kohantei at The Galleria, Al Maryah Island</div>
+  </div>
+
   <!-- Introduction -->
-  <div style="background: #F4F1EA; padding: 136px clamp(32px, 6.7vw, 96px) 120px;">
+  <div style="background: #F4F1EA; padding: 120px clamp(32px, 6.7vw, 96px) 120px;">
     <div data-reveal="0" class="g-2col wrap" style="display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px);">
       <h2 class="eyebrow" data-tick="1" style="padding-top: 14px;">The business</h2>
       <div>
@@ -103,9 +110,11 @@
             </div>
           </div>
         </div>
-        <div data-reveal="240" class="photo-slot" style="aspect-ratio: 4 / 3; background: rgba(244,241,234,0.05); border: 1px solid rgba(244,241,234,0.14);">
-          <svg data-plan="#B08D57" aria-hidden="true" style="opacity: 0.32;"></svg>
-          <div class="slot-note" style="color: rgba(244,241,234,0.6);">Photography to follow<br>Kohantei, The Galleria</div>
+        <div data-reveal="240">
+          <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #1A1B1C;">
+            <img src="./uploads/kohantei/frontage.jpg" alt="Concept render of the Kohantei frontage at The Galleria: reclaimed timber posts, noren curtains and the KOHANTEI sign" width="1200" height="900" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="mono-cream" style="margin-top: 14px;">Concept render, the entrance from The Galleria</div>
         </div>
       </div>
       <div data-reveal="0" style="margin-top: 80px;">
@@ -127,6 +136,20 @@
             <div class="mono-gold">Opening</div>
             <div class="serif" style="font-size: 16px; line-height: 1.55; margin-top: 12px; color: rgba(244,241,234,0.85);">Team, systems and operating structure</div>
           </div>
+        </div>
+      </div>
+      <div data-stagger="120" class="g-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px clamp(24px, 3vw, 48px); margin-top: 80px;">
+        <div data-reveal="0">
+          <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #1A1B1C;">
+            <img src="./uploads/kohantei/private-room.jpg" alt="Concept render of a private dining room at Kohantei behind shoji screens, with paper lanterns" width="1000" height="750" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="mono-cream" style="margin-top: 14px;">Concept render, private dining behind shoji screens</div>
+        </div>
+        <div data-reveal="0">
+          <div style="position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #1A1B1C;">
+            <img src="./uploads/kohantei/banquette.jpg" alt="Concept render of the Kohantei banquette, a tapestry seat beneath a framed print and a branching brass lamp" width="1000" height="750" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div class="mono-cream" style="margin-top: 14px;">Concept render, the banquette</div>
         </div>
       </div>
     </div>
@@ -267,9 +290,12 @@
     </div>
   </div>
 
-  <!-- Full-bleed — Abu Dhabi -->
+  <!-- Full-bleed — the dining room -->
   <div data-clip="1" data-parallax="0.06" class="fig-1" style="position: relative; height: 560px; background: #DDE5E0; overflow: hidden;">
-    <img src="./uploads/abu-dhabi-dusk-wide.jpg" alt="Towers at dusk, Abu Dhabi" width="1600" height="700" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+    <img src="./uploads/kohantei/room.jpg" alt="Concept render of the Kohantei dining room: timber beams, brass table lamps and the omakase counter beyond" width="1600" height="900" loading="lazy" decoding="async" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+  </div>
+  <div style="background: #F4F1EA; padding: 18px clamp(32px, 6.7vw, 96px) 0;">
+    <div class="wrap mono-muted" data-tick="1">Concept render, the dining room</div>
   </div>
 
   <!-- Our market -->
