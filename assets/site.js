@@ -7,6 +7,29 @@
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const fields = [];
 
+    // Smooth page-to-page navigation. Browsers with cross-document view transitions
+    // crossfade natively (see site.css); others get a short fade out / fade in.
+    const nativeTransitions = 'onpagereveal' in window;
+    const pageEl = document.querySelector('.page');
+    let arrivedInternal = false;
+    try { arrivedInternal = sessionStorage.getItem('kk-nav') === '1'; sessionStorage.removeItem('kk-nav'); } catch (e) {}
+    if (document.documentElement.classList.contains('kk-arriving')) {
+      requestAnimationFrame(() => requestAnimationFrame(() => document.documentElement.classList.add('kk-in')));
+    }
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === '_blank') return;
+      let url;
+      try { url = new URL(a.href, location.href); } catch (err) { return; }
+      if (url.origin !== location.origin || (url.pathname === location.pathname && url.search === location.search)) return;
+      try { sessionStorage.setItem('kk-nav', '1'); } catch (err) {}
+      if (nativeTransitions || reduced || !pageEl) return;
+      e.preventDefault();
+      pageEl.classList.add('is-leaving');
+      setTimeout(() => { location.href = url.href; }, 230);
+    });
+    window.addEventListener('pageshow', (e) => { if (e.persisted && pageEl) pageEl.classList.remove('is-leaving'); });
+
     const burgerNav = document.getElementById('kk-nav');
     const burger = document.getElementById('kk-burger');
     if (burger && burgerNav) {
@@ -265,7 +288,7 @@
       heroCanvas.style.opacity = '1';
     }
     const navEl = document.getElementById('kk-nav');
-    if (navEl) {
+    if (navEl && !arrivedInternal) {
       Array.from(navEl.querySelectorAll('.nav-inner > a, .nav-links > a, .nav-menu > button')).forEach((a, i) => {
         a.style.opacity = '0'; a.style.transform = 'translateY(-8px)';
         void a.offsetWidth;

@@ -36,6 +36,22 @@ a:hover { opacity: 0.7; }
 .cta:hover { color: #C9A87C; border-color: #C9A87C; opacity: 1; }
 .cta:hover .cta-arrow { transform: translateX(6px); }
 
+/* Page-to-page transitions ---------------------------------------------- */
+/* Native cross-document view transitions: a short crossfade with the nav held in place. */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 340ms; animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1); }
+.site-nav { view-transition-name: site-nav; }
+::view-transition-old(site-nav), ::view-transition-new(site-nav) { animation-duration: 340ms; }
+/* Fallback for browsers without cross-document transitions: fade out on leave, fade in on arrival. */
+.js .page { transition: opacity 320ms cubic-bezier(0.25, 0.1, 0.25, 1); }
+.js .page.is-leaving { opacity: 0; transition-duration: 220ms; }
+.kk-arriving .page { opacity: 0; }
+.kk-arriving.kk-in .page { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+  .js .page { transition: none; }
+}
+
 /* Navigation ------------------------------------------------------------ */
 .site-nav { position: sticky; top: 0; z-index: 10; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); padding: 0 clamp(32px, 6.7vw, 96px); }
 .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 26px 0; }
