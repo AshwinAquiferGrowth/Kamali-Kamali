@@ -31,7 +31,10 @@ a:hover { opacity: 0.7; }
 .eyebrow { color: #5A6B62; }
 .eyebrow-cream { color: rgba(244,241,234,0.6); }
 .rule-bar { border-top: 1px solid #0E0F10; padding-top: 20px; }
-.cta:hover { color: #C9A87C !important; opacity: 1; }
+.cta { display: inline-flex; align-items: baseline; gap: 0.75em; font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #B08D57; text-decoration: none; padding-bottom: 8px; border-bottom: 1px solid rgba(176,141,87,0.5); transition: color 220ms cubic-bezier(0.25,0.1,0.25,1), border-color 220ms cubic-bezier(0.25,0.1,0.25,1); }
+.cta .cta-arrow { display: inline-block; transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1); }
+.cta:hover { color: #C9A87C; border-color: #C9A87C; opacity: 1; }
+.cta:hover .cta-arrow { transform: translateX(6px); }
 
 /* Navigation ------------------------------------------------------------ */
 .site-nav { position: sticky; top: 0; z-index: 10; background: var(--nav-bg, #0E0F10); border-bottom: 1px solid var(--nav-line, rgba(244,241,234,0.14)); transition: background 450ms cubic-bezier(0.25,0.1,0.25,1), border-color 450ms cubic-bezier(0.25,0.1,0.25,1); padding: 0 clamp(32px, 6.7vw, 96px); }
