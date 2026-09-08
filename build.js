@@ -11,10 +11,11 @@ const site = {
   siteUrl: '',
   contact: {
     // TODO: replace placeholders with the client's real details (one place, every page updates).
-    email: 'partnerships@[domain].com',
-    phone: '+971 (0) 2 [XXX XXXX]',
+    email: 'partnerships@[domain].com',   // TODO: mailbox to be created on the client's domain
+    phoneLabel: 'Phone',
+    phone: '+971 (0) 2 [XXX XXXX]',        // TODO: office landline (Mihai is confirming)
     phoneTel: '+97120000000',
-    address: 'PO Box [XXXXXX], Abu Dhabi, United Arab Emirates',
+    address: 'Level 3, The Mall, World Trade Center, Al Danah, Abu Dhabi, United Arab Emirates',
   },
 };
 
@@ -73,7 +74,7 @@ for (const file of fs.readdirSync(pagesDir).filter((f) => f.endsWith('.html'))) 
   const isHome = file === 'index.html';
   const vars = {
     site,
-    contact: site.contact,
+    contact: Object.assign({}, site.contact, page.contact || {}),  // a page may override e.g. the phone
     page,
     content,
     year: new Date().getFullYear(),
