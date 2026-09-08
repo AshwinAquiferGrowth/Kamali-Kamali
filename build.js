@@ -12,6 +12,7 @@ const site = {
   contact: {
     // TODO: replace placeholders with the client's real details (one place, every page updates).
     email: 'partnerships@[domain].com',   // TODO: mailbox to be created on the client's domain
+    addressLabel: 'Headquarters',
     phoneLabel: 'Phone',
     phone: '+971 (0) 2 [XXX XXXX]',        // TODO: office landline (Mihai is confirming)
     phoneTel: '+97120000000',
