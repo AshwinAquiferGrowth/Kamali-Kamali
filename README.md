@@ -44,3 +44,20 @@ build exports alongside the root pages: the same HTML with clean, extension-less
 links (`/hospitality`), the shared assets, and the web-sized images. The originals
 under `uploads/kohantei/source/` are kept in the repository but not deployed.
 `public/` is generated and ignored by git.
+
+## Making changes
+
+`main` is production, so nothing is pushed to it directly.
+
+1. Work on a branch named for the change, e.g. `hospitality/portraits`.
+2. Push the branch. Vercel builds a preview deployment for it and reports the
+   URL on the commit and on the pull request; review the change there.
+3. Open a pull request against `main`. It is merged only once the change has
+   been approved.
+4. Merging deploys to production automatically.
+
+Images and other files supplied by the client go into a branch the same way,
+never straight onto `main`: `assets/` and `uploads/` are both copied into the
+deploy tree, so an upload to `main` is live within a minute. Keep original
+files under `uploads/kohantei/source/` (excluded from the deploy) and commit
+only the web-sized derivative alongside them.
