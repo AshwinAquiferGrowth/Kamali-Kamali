@@ -126,6 +126,10 @@ a:hover { opacity: 0.7; }
 .hub-label.r { transform: translate(0, -50%); text-align: left; }
 .hub-list { display: none; }
 @media (max-width: 640px) { .hub { display: none; } .hub-list { display: block; } }
+/* Checklist grid (investment page) */
+.check-grid { display: grid; }
+@media (max-width: 1000px) { .check-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 640px) { .check-grid { grid-template-columns: 1fr !important; } }
 /* Scope columns (investment page) */
 .scope-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); }
 @media (max-width: 760px) { .scope-cols { grid-template-columns: 1fr; } .scope-cols > div + div { margin-top: 40px; } }
