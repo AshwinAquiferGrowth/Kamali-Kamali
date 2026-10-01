@@ -117,6 +117,33 @@ a:hover { opacity: 0.7; }
 .track-step.now .track-dot { background: #B08D57; box-shadow: 0 0 0 5px rgba(176,141,87,0.22); }
 @media (prefers-reduced-motion: no-preference) { .track-step.now .track-dot { animation: kk-pulse 2.6s ease-in-out infinite; } }
 @keyframes kk-pulse { 0%, 100% { box-shadow: 0 0 0 4px rgba(176,141,87,0.16); } 50% { box-shadow: 0 0 0 9px rgba(176,141,87,0.05); } }
+/* Hub diagram (investment page): hairline SVG with HTML labels so the type stays crisp at any size */
+.hub { position: relative; aspect-ratio: 660 / 520; width: 100%; max-width: 660px; margin: 0 auto; }
+.hub svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; overflow: visible; }
+.hub-label { position: absolute; white-space: nowrap; line-height: 1; }
+.hub-label.c { transform: translate(-50%, -50%); text-align: center; }
+.hub-label.l { transform: translate(-100%, -50%); text-align: right; }
+.hub-label.r { transform: translate(0, -50%); text-align: left; }
+.hub-list { display: none; }
+@media (max-width: 640px) { .hub { display: none; } .hub-list { display: block; } }
+/* Checklist grid (investment page) */
+.check-grid { display: grid; }
+@media (max-width: 1000px) { .check-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+@media (max-width: 640px) { .check-grid { grid-template-columns: 1fr !important; } }
+/* Tablet widths: the six stage labels no longer fit, so each mandate shows its range instead */
+@media (max-width: 1000px) {
+  .journey-head { display: none !important; }
+  .journey-row { grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); }
+  .journey-range { display: block !important; }
+  .hub-wrap { grid-template-columns: 1fr !important; }
+  .hub { max-width: 560px; margin: 0; }
+}
+@media (max-width: 900px) { .g-contact { grid-template-columns: 1fr !important; } }
+.g-crow > .serif { overflow-wrap: anywhere; }
+@media (max-width: 760px) { .role-fig { aspect-ratio: 4 / 3 !important; } }
+/* Scope columns (investment page) */
+.scope-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 64px); }
+@media (max-width: 760px) { .scope-cols { grid-template-columns: 1fr; } .scope-cols > div + div { margin-top: 40px; } }
 /* Hero floor plan: keep clear of the headline on tablets and small laptops */
 @media (max-width: 1240px) { .hero-plan { width: 50% !important; right: -20% !important; opacity: 0.2 !important; } }
 @media (max-width: 900px) { .hero-plan { width: 70% !important; right: -38% !important; opacity: 0.14 !important; } }
