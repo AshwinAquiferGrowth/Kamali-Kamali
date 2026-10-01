@@ -228,6 +228,19 @@
       [[520, 330], [580, 330]].forEach((p) => square(p[0], p[1], 22));
       planRecs.push({ svg, shapes });
     });
+    // Any inline <svg data-draw> is drawn in the same way: each shape's stroke runs in on reveal.
+    Array.from(document.querySelectorAll('svg[data-draw]')).forEach((svg) => {
+      const shapes = Array.from(svg.querySelectorAll('path, line, circle, rect'));
+      shapes.forEach((e) => {
+        const n = (a) => parseFloat(e.getAttribute(a)) || 0;
+        const L = e.tagName === 'path' ? e.getTotalLength()
+          : e.tagName === 'circle' ? 2 * Math.PI * n('r')
+          : e.tagName === 'rect' ? 2 * (n('width') + n('height'))
+          : Math.hypot(n('x2') - n('x1'), n('y2') - n('y1'));
+        if (!reduced) { e.style.strokeDasharray = String(L); e.style.strokeDashoffset = String(L); }
+      });
+      planRecs.push({ svg, shapes });
+    });
     if (reduced) return;
     if (planRecs.length) {
       const planIO = new IntersectionObserver((ens) => {

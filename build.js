@@ -82,6 +82,9 @@ for (const file of fs.readdirSync(pagesDir).filter((f) => f.endsWith('.html'))) 
     home_href: isHome ? '#top' : './index.html',
     home: isHome ? '' : './index.html',
     current_hospitality: file === 'hospitality.html' ? ' aria-current="page"' : '',
+    current_investment: file === 'investment-real-estate.html' ? ' aria-current="page"' : '',
+    current_ai: file === 'ai-business-transformation.html' ? ' aria-current="page"' : '',
+    current_education: file === 'education.html' ? ' aria-current="page"' : '',
     canonical_tags: site.siteUrl
       ? `<link rel="canonical" href="${site.siteUrl}${page.path}">\n<meta property="og:url" content="${site.siteUrl}${page.path}">`
       : '',
