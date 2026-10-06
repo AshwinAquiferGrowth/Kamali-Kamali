@@ -376,6 +376,10 @@
         for (const n of el.childNodes) { if (n.nodeType === 3 && n.nodeValue.trim()) { tn = n; break; } }
         if (!tn) return;
         const orig = tn.nodeValue;
+        // The scramble runs on an aria-hidden copy; the real text stays in the tree for assistive technology.
+        const anim = document.createElement('span'); anim.setAttribute('aria-hidden', 'true'); anim.textContent = orig;
+        const real = document.createElement('span'); real.className = 'sr-only'; real.textContent = orig;
+        tn.parentNode.insertBefore(anim, tn); tn.parentNode.insertBefore(real, tn); tn.parentNode.removeChild(tn);
         let k = 0;
         const iv = setInterval(() => {
           k++;
@@ -385,8 +389,8 @@
             const c = orig[i];
             out += (i < reveal || c === ' ') ? c : tickChars[Math.floor(Math.random() * tickChars.length)];
           }
-          tn.nodeValue = out;
-          if (k >= 10) { tn.nodeValue = orig; clearInterval(iv); }
+          anim.textContent = out;
+          if (k >= 10) { anim.textContent = orig; clearInterval(iv); }
         }, 32);
       });
     }, { threshold: 0.5 });

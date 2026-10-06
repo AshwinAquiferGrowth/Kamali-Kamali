@@ -13,6 +13,9 @@ a:hover { opacity: 0.7; }
 .page { background: #CDD9D3; color: #0E0F10; min-height: 100vh; }
 .grain { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 240px 240px; opacity: 0.06; mix-blend-mode: overlay; pointer-events: none; z-index: 60; }
 
+.skip-link { position: absolute; left: 16px; top: -120px; z-index: 100; background: #0E0F10; color: #F4F1EA; font-family: 'Geist', system-ui, sans-serif; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; }
+.skip-link:focus { top: 12px; outline: 2px solid #B08D57; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 /* Typographic roles ----------------------------------------------------- */
 /* Layout stays inline on each element; these carry the recurring type roles so a
    site-wide change (e.g. label colour for contrast) is one edit. */
@@ -20,15 +23,15 @@ a:hover { opacity: 0.7; }
 .em { font-style: italic; font-weight: 200; }
 .serif { font-family: 'Source Serif 4', Georgia, serif; font-weight: 300; }
 .serif-light { font-family: 'Source Serif 4', Georgia, serif; font-weight: 200; }
-.mono-bronze, .mono-muted, .mono-gold, .mono-cream, .mono-white { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; }
-.mono-bronze { color: #8A6F3F; }
-.mono-muted { color: #5A6B62; }
+.mono-bronze, .mono-muted, .mono-gold, .mono-cream, .mono-white { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; }
+.mono-bronze { color: #6B552E; }
+.mono-muted { color: #4A5A51; }
 .mono-gold { color: #B08D57; }
 .mono-cream { color: rgba(244,241,234,0.6); }
 .mono-white { color: #F4F1EA; }
-.mono-num { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; color: #8A6F3F; }
-.eyebrow, .eyebrow-cream { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; }
-.eyebrow { color: #5A6B62; }
+.mono-num { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; color: #6B552E; }
+.eyebrow, .eyebrow-cream { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase; }
+.eyebrow { color: #4A5A51; }
 .eyebrow-cream { color: rgba(244,241,234,0.6); }
 .rule-bar { border-top: 1px solid #0E0F10; padding-top: 20px; }
 .cta { display: inline-flex; align-items: baseline; gap: 0.75em; font-family: 'Geist', system-ui, sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: #B08D57; text-decoration: none; padding-bottom: 8px; border-bottom: 1px solid rgba(176,141,87,0.5); transition: color 220ms cubic-bezier(0.25,0.1,0.25,1), border-color 220ms cubic-bezier(0.25,0.1,0.25,1); }
@@ -99,7 +102,7 @@ a:hover { opacity: 0.7; }
 /* Hospitality page components ------------------------------------------ */
 .photo-slot { position: relative; overflow: hidden; }
 .photo-slot svg { position: absolute; left: -22%; top: 50%; width: 144%; transform: translateY(-50%); aspect-ratio: 640 / 420; pointer-events: none; }
-.photo-slot .slot-note { position: absolute; left: 20px; right: 20px; bottom: 18px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.7; }
+.photo-slot .slot-note { position: absolute; left: 20px; right: 20px; bottom: 18px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; line-height: 1.7; }
 .journey-head, .journey-row { display: grid; grid-template-columns: minmax(180px, 300px) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
 .journey-stages { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; }
 .journey-track { position: relative; display: grid; grid-template-columns: repeat(6, 1fr); height: 34px; align-items: center; }
@@ -121,6 +124,12 @@ a:hover { opacity: 0.7; }
 .sector-link { display: inline-block; }
 .sector-arrow { display: inline-block; margin-left: 0.45em; font-size: 0.5em; color: #8A6F3F; vertical-align: middle; transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1); }
 .sector-link:hover .sector-arrow { transform: translateX(10px); }
+/* 'Also from K&K' row on the sector pages */
+.more-link { display: block; border-top: 1px solid rgba(14,15,16,0.13); padding: 22px 0 8px; text-decoration: none; }
+.more-link:hover { opacity: 1; }
+.more-link .sector-arrow { font-size: 0.7em; }
+.more-link:hover .sector-arrow { transform: translateX(8px); }
+@media (max-width: 760px) { .more-grid { grid-template-columns: 1fr !important; gap: 0 !important; } }
 /* Hub diagram (investment page): hairline SVG with HTML labels so the type stays crisp at any size */
 .hub { position: relative; aspect-ratio: 660 / 520; width: 100%; max-width: 660px; margin: 0 auto; }
 .hub svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; overflow: visible; }
@@ -170,5 +179,19 @@ a:hover { opacity: 0.7; }
   .journey-row { grid-template-columns: 1fr !important; gap: 14px !important; padding: 22px 0 !important; }
   .journey-range { display: block !important; }
   .cred-grid { grid-template-columns: 1fr !important; }
-  .track-label { font-size: 9px !important; }
+  .track-label { font-size: 10px !important; }
+}
+
+/* Print: the type and the contact details, without the ambient canvases, drawings and navigation */
+@media print {
+  .grain, canvas, .hero-plan, .hub svg, .site-nav, .skip-link, .footer-band svg, .cta .cta-arrow { display: none !important; }
+  .page, .page * { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  [data-nav-dark], [data-nav-dark] * { background: #fff !important; color: #000 !important; }
+  .hub-label { color: #000 !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
+  [data-reveal], [data-lines], [data-clip] { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .journey-bar, .track-dot, .track-step.done .track-dot { background: #000 !important; }
+  .hub { display: none !important; } .hub-list { display: block !important; }
+  .fig-1, .fig-2 { height: auto !important; }
+  .fig-1 img, .fig-2 img { position: static !important; height: auto !important; max-height: 60vh; }
 }
