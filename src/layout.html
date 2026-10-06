@@ -5,13 +5,14 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
 <div data-screen-label="{{page.label}}" class="page">
 
   <div data-grain="1" class="grain"></div>
 
 {{> nav}}
 
-<main>
+<main id="main" tabindex="-1">
 {{content}}
 </main>
 
@@ -22,5 +23,6 @@
 </div>
 
 <script src="./assets/site.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>

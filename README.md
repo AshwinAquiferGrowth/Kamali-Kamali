@@ -34,6 +34,29 @@ python3 -m http.server 8321
 # then open http://localhost:8321/
 ```
 
+## Launch files and assets
+
+- `assets/fonts/` holds self-hosted subsets of Source Serif 4, Geist and Geist Mono
+  (SIL Open Font License), declared in `assets/fonts.css`. No request leaves the
+  site's own domain for fonts.
+- `assets/icons/` holds the favicon set, the Apple touch icon, the manifest icons
+  and `og-image.jpg`, the social preview used on every page.
+- The build writes `robots.txt`, `sitemap.xml` and `site.webmanifest` into `public/`
+  from the page list and the site URL in `build.js`, and exports `404.html`, which
+  Vercel serves for unknown paths. Pages with `"noindex": true` in their header
+  are left out of the sitemap and get a `noindex` robots tag.
+- Every page carries canonical and Open Graph URLs, an Organization JSON-LD record
+  with the principals, and the shared preview image.
+- `vercel.json` sets security headers and long cache lifetimes for fonts, icons
+  and uploads.
+- Vercel Web Analytics is loaded from `/_vercel/insights/script.js`; it is
+  cookieless and does nothing until enabled for the project in the Vercel dashboard.
+
+Photos under `uploads/` keep width and WebP variants beside the source file
+(`name-640.webp`, `name-1000.jpg`, …) and pages reference them with `srcset`;
+regenerate the variants when a source image changes. Stock photo credits are in
+`content/README.md`.
+
 ## Deployment
 
 The site is deployed on Vercel from this repository. `main` is the production
