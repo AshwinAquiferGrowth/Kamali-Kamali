@@ -11,7 +11,7 @@ const site = {
   siteUrl: 'https://kamaliandkamali.ae',
   contact: {
     // TODO: replace placeholders with the client's real details (one place, every page updates).
-    email: 'partnerships@[domain].com',   // TODO: mailbox to be created on the client's domain
+    email: 'partnerships@kamaliandkamali.ae',  // mailbox to be created on the client's domain before launch
     addressLabel: 'Headquarters',
     phoneLabel: 'Phone',
     phone: '+971 (0) 2 [XXX XXXX]',        // TODO: office landline (Mihai is confirming)
@@ -79,7 +79,7 @@ function organisationJsonLd(page, isHome) {
     address: { '@type': 'PostalAddress', streetAddress: 'Level 3, The Mall, World Trade Center, Al Danah', addressLocality: 'Abu Dhabi', addressCountry: 'AE' },
     founder: [
       { '@type': 'Person', name: 'Dr. Tayeb Kamali', jobTitle: 'Founder' },
-      { '@type': 'Person', name: 'Mohamed Kamali', jobTitle: 'Co-founder & Managing Director' },
+      { '@type': 'Person', name: 'Mohamed Kamali', jobTitle: 'Founder & Managing Director' },
     ],
   };
   if (!/\[/.test(site.contact.email)) org.email = site.contact.email;
