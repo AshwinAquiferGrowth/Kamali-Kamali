@@ -179,6 +179,7 @@ a:hover { opacity: 0.7; }
   .journey-row { grid-template-columns: 1fr !important; gap: 14px !important; padding: 22px 0 !important; }
   .journey-range { display: block !important; }
   .cred-grid { grid-template-columns: 1fr !important; }
+  .values-grid { grid-template-columns: 1fr !important; }
   .track-label { font-size: 10px !important; }
 }
 

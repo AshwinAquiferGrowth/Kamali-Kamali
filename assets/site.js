@@ -315,6 +315,7 @@
     const initLines = () => lineEls.forEach((el) => {
       if (el.__lineInners) return;
       const units = [];
+      const original = el.textContent.replace(/\s+/g, ' ').trim();
       Array.from(el.childNodes).forEach((node) => {
         if (node.nodeType === 3) {
           node.textContent.split(/(\s+)/).forEach((tok) => {
@@ -326,6 +327,9 @@
       });
       el.textContent = '';
       units.forEach((u) => el.appendChild(u));
+      // Remember where the source had whitespace, so "side." stays "side." and "with capital" keeps its space.
+      const spaced = new Set();
+      units.forEach((u, i) => { if (u.nodeType === 1 && i > 0 && units[i - 1].nodeType === 3) spaced.add(u); });
       const rows = [];
       let lastTop = null;
       units.forEach((u) => {
@@ -335,12 +339,19 @@
         rows[rows.length - 1].push(u);
       });
       el.textContent = '';
-      el.__lineInners = rows.map((row) => {
+      // The rows are block-level, so a space is kept at the end of each row: the heading's text
+      // content stays word-for-word what the HTML says, for search engines and screen readers.
+      el.setAttribute('aria-label', original);
+      el.__lineInners = rows.map((row, r) => {
         const outer = document.createElement('span');
         outer.style.cssText = 'display:block;overflow:hidden;margin-bottom:-0.12em;';
         const inner = document.createElement('span');
         inner.style.cssText = 'display:block;padding-bottom:0.12em;transform:translateY(115%);';
-        row.forEach((u, i) => { inner.appendChild(u); if (i < row.length - 1) inner.appendChild(document.createTextNode(' ')); });
+        row.forEach((u, i) => {
+          inner.appendChild(u);
+          const next = i < row.length - 1 ? row[i + 1] : (r < rows.length - 1 ? rows[r + 1][0] : null);
+          if (next && spaced.has(next)) inner.appendChild(document.createTextNode(' '));
+        });
         outer.appendChild(inner);
         el.appendChild(outer);
         return inner;
@@ -352,21 +363,21 @@
         if (!en.isIntersecting) return;
         const base = parseInt(en.target.getAttribute('data-lines'), 10) || 0;
         (en.target.__lineInners || []).forEach((inner, i) => {
-          inner.style.transition = 'transform 1.05s ' + ease + ' ' + (base + i * 95) + 'ms';
+          inner.style.transition = 'transform 0.7s ' + ease + ' ' + (base + i * 55) + 'ms';
           inner.style.transform = 'translateY(0%)';
         });
         lineIO.unobserve(en.target);
       });
     }, { threshold: 0.2 });
     const fontsReady = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
-    Promise.race([fontsReady, new Promise((res) => setTimeout(res, 900))]).then(() => setTimeout(() => {
+    Promise.race([fontsReady, new Promise((res) => setTimeout(res, 250))]).then(() => setTimeout(() => {
       initLines();
       lineEls.forEach((el) => lineIO.observe(el));
     }, 0));
     // clip-path'd elements report zero visible area to IO — reveal from the scroll loop instead
     let clips = Array.from(document.querySelectorAll('[data-clip]'));
     clips.forEach((el) => { el.style.clipPath = 'inset(0 0 100% 0)'; });
-    const tickChars = 'KAMALI0123456789·—&';
+    const tickChars = 'KAMALI0123456789·-&';
     const tickIO = new IntersectionObserver((ens) => {
       ens.forEach((en) => {
         if (!en.isIntersecting) return;
