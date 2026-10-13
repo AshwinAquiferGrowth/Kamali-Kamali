@@ -48,7 +48,11 @@ python3 -m http.server 8321
 - Every page carries canonical and Open Graph URLs, an Organization JSON-LD record
   with the principals, and the shared preview image.
 - `vercel.json` sets security headers and long cache lifetimes for fonts, icons
-  and uploads.
+  and uploads, and marks every `*.vercel.app` host `noindex` so previews and the
+  staging alias stay out of search while the real domain indexes normally. Once
+  kamaliandkamali.ae is live, add a host redirect from the vercel.app alias to it.
+- Contact details live in `build.js`. The phone row and the footer phone are only
+  rendered when a number is set; a page can override any contact field in its header.
 - Vercel Web Analytics is loaded from `/_vercel/insights/script.js`; it is
   cookieless and does nothing until enabled for the project in the Vercel dashboard.
 
