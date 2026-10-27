@@ -325,6 +325,22 @@
           });
         } else if (node.nodeType === 1) { node.style.display = 'inline-block'; units.push(node); }
       });
+      // Punctuation that follows a word with no space ("side." or "won't.") shares one unit with it,
+      // so the mark can neither wrap onto its own line nor read as a separate word.
+      const punct = /^[.,;:!?'\u2019\u201d)\]]+$/;
+      for (let i = units.length - 1; i > 0; i--) {
+        const u = units[i], prev = units[i - 1];
+        if (u.nodeType !== 1 || prev.nodeType !== 1 || !punct.test(u.textContent)) continue;
+        let wrap = prev;
+        if (!prev.__glue) {
+          wrap = document.createElement('span'); wrap.__glue = true;
+          wrap.style.cssText = 'display:inline-block;white-space:nowrap;';
+          prev.style.display = 'inline'; wrap.appendChild(prev);
+          units[i - 1] = wrap;
+        }
+        u.style.display = 'inline'; wrap.appendChild(u);
+        units.splice(i, 1);
+      }
       el.textContent = '';
       units.forEach((u) => el.appendChild(u));
       // Remember where the source had whitespace, so "side." stays "side." and "with capital" keeps its space.
@@ -378,11 +394,17 @@
     let clips = Array.from(document.querySelectorAll('[data-clip]'));
     clips.forEach((el) => { el.style.clipPath = 'inset(0 0 100% 0)'; });
     const tickChars = 'KAMALI0123456789·-&';
+    // Labels already on screen when a page is opened at an anchor (e.g. /#our-values) are shown as they are:
+    // the scramble is for labels that scroll into view, not for the thing the visitor came to read.
+    const anchored = /^#.+/.test(location.hash) && location.hash !== '#top';
+    let settling = true;
+    setTimeout(() => { settling = false; }, 600);
     const tickIO = new IntersectionObserver((ens) => {
       ens.forEach((en) => {
         if (!en.isIntersecting) return;
         const el = en.target;
         tickIO.unobserve(el);
+        if (anchored && settling) return;
         let tn = null;
         for (const n of el.childNodes) { if (n.nodeType === 3 && n.nodeValue.trim()) { tn = n; break; } }
         if (!tn) return;
@@ -391,21 +413,25 @@
         const anim = document.createElement('span'); anim.setAttribute('aria-hidden', 'true'); anim.textContent = orig;
         const real = document.createElement('span'); real.className = 'sr-only'; real.textContent = orig;
         tn.parentNode.insertBefore(anim, tn); tn.parentNode.insertBefore(real, tn); tn.parentNode.removeChild(tn);
+        // Seven short steps (about 200ms), resolving left to right; at every step most characters are
+        // already the real ones, so the label stays readable while it settles.
         let k = 0;
+        const steps = 7;
         const iv = setInterval(() => {
           k++;
-          const reveal = Math.floor(orig.length * k / 10);
+          const reveal = Math.floor(orig.length * k / steps);
           let out = '';
           for (let i = 0; i < orig.length; i++) {
             const c = orig[i];
-            out += (i < reveal || c === ' ') ? c : tickChars[Math.floor(Math.random() * tickChars.length)];
+            out += (i < reveal || c === ' ' || Math.random() < 0.6) ? c : tickChars[Math.floor(Math.random() * tickChars.length)];
           }
           anim.textContent = out;
-          if (k >= 10) { anim.textContent = orig; clearInterval(iv); }
-        }, 32);
+          if (k >= steps) { anim.textContent = orig; clearInterval(iv); }
+        }, 30);
       });
     }, { threshold: 0.5 });
-    Array.from(document.querySelectorAll('[data-tick]')).forEach((el) => tickIO.observe(el));
+    // With reduced motion the labels are never touched: the final text is there from the first paint.
+    if (!reduced) Array.from(document.querySelectorAll('[data-tick]')).forEach((el) => tickIO.observe(el));
     const bgOf = (el) => {
       let n = el;
       while (n && n.nodeType === 1) {
