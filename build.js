@@ -82,7 +82,7 @@ function organisationJsonLd(page, isHome) {
     ],
   };
   if (!/\[/.test(site.contact.email)) org.email = site.contact.email;
-  if (!/\[/.test(site.contact.phone)) org.telephone = site.contact.phoneTel;
+  if (site.contact.phone && !/\[/.test(site.contact.phone)) org.telephone = site.contact.phoneTel;
   return org;
 }
 
