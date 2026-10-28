@@ -15,7 +15,7 @@ const site = {
     phoneLabel: 'Phone',
     phone: '',      // no confirmed corporate number: the phone row and footer phone are omitted until one exists
     phoneTel: '',
-    address: 'Level 3, The Mall, World Trade Center, Al Danah, Abu Dhabi, United Arab Emirates',
+    address: 'Cloud Spaces, Level 3, The Mall, World Trade Center, Al Danah, Abu Dhabi, United Arab Emirates',
   },
 };
 
@@ -75,7 +75,7 @@ function organisationJsonLd(page, isHome) {
     name: site.name,
     url: site.siteUrl || undefined,
     logo: site.siteUrl ? site.siteUrl + '/assets/icons/icon-512.png' : undefined,
-    address: { '@type': 'PostalAddress', streetAddress: 'Level 3, The Mall, World Trade Center, Al Danah', addressLocality: 'Abu Dhabi', addressCountry: 'AE' },
+    address: { '@type': 'PostalAddress', streetAddress: 'Cloud Spaces, Level 3, The Mall, World Trade Center, Al Danah', addressLocality: 'Abu Dhabi', addressCountry: 'AE' },
     founder: [
       { '@type': 'Person', name: 'Dr. Tayeb Kamali', jobTitle: 'Founder' },
       { '@type': 'Person', name: 'Mohamed Kamali', jobTitle: 'Founder & Managing Director' },
@@ -117,6 +117,8 @@ for (const file of fs.readdirSync(pagesDir).filter((f) => f.endsWith('.html'))) 
     year: new Date().getFullYear(),
     home_href: isHome ? '#top' : './index.html',
     home: isHome ? '' : './index.html',
+    // Pages without a contact section (privacy, 404) send "Contact us" to the homepage's.
+    contact_href: /id="contact-us"/.test(content) ? '#contact-us' : './index.html#contact-us',
     current_hospitality: file === 'hospitality.html' ? ' aria-current="page"' : '',
     current_investment: file === 'investment-real-estate.html' ? ' aria-current="page"' : '',
     current_ai: file === 'ai-business-transformation.html' ? ' aria-current="page"' : '',
