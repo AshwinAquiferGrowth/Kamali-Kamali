@@ -49,8 +49,35 @@ python3 -m http.server 8321
   with the principals, and the shared preview image.
 - `vercel.json` sets security headers and long cache lifetimes for fonts, icons
   and uploads, and marks every `*.vercel.app` host `noindex` so previews and the
-  staging alias stay out of search while the real domain indexes normally. Once
-  kamaliandkamali.ae is live, add a host redirect from the vercel.app alias to it.
+  staging alias stay out of search while the real domain indexes normally, and
+  permanently redirects the production alias `kamali-kamali.vercel.app` to
+  https://kamaliandkamali.ae (preview hosts are not redirected).
+
+## Domain
+
+`kamaliandkamali.ae` and `www.kamaliandkamali.ae` are attached to the Vercel
+project (www redirects to the apex with a 308). The registrar is Hostinger and
+mail for the domain is hosted there, so when DNS moves to Cloudflare the zone
+needs these records, all set to "DNS only" (grey cloud) so Vercel issues the
+certificate and there is no redirect loop:
+
+| Type  | Name                          | Value                                      | Purpose            |
+|-------|-------------------------------|--------------------------------------------|--------------------|
+| A     | @                             | 216.198.79.1                               | Website (Vercel)   |
+| A     | @                             | 64.29.17.1                                 | Website (Vercel)   |
+| CNAME | www                           | ff5936d704429ef1.vercel-dns-017.com        | Website (Vercel)   |
+| MX    | @                             | mx1.hostinger.com, priority 5              | Mail (Hostinger)   |
+| MX    | @                             | mx2.hostinger.com, priority 10             | Mail (Hostinger)   |
+| TXT   | @                             | v=spf1 include:_spf.mail.hostinger.com ~all | Mail (SPF)        |
+| TXT   | _dmarc                        | v=DMARC1; p=none                           | Mail (DMARC)       |
+| CNAME | hostingermail-a._domainkey    | hostingermail-a.dkim.mail.hostinger.com    | Mail (DKIM)        |
+| CNAME | hostingermail-b._domainkey    | hostingermail-b.dkim.mail.hostinger.com    | Mail (DKIM)        |
+| CNAME | hostingermail-c._domainkey    | hostingermail-c.dkim.mail.hostinger.com    | Mail (DKIM)        |
+| CNAME | autoconfig                    | autoconfig.mail.hostinger.com              | Mail client setup  |
+| CNAME | autodiscover                  | autodiscover.mail.hostinger.com            | Mail client setup  |
+
+The old `ftp` A record pointed at Hostinger web hosting and is not needed.
+If Cloudflare's proxy is switched on later, set SSL/TLS to "Full (strict)".
 - Contact details live in `build.js`. The phone row and the footer phone are only
   rendered when a number is set; a page can override any contact field in its header.
 - Vercel Web Analytics is loaded from `/_vercel/insights/script.js`; it is
